@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Heart, Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -19,17 +20,30 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   onSwitchMode,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
   });
+  const { signIn, signUp } = useAuth();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement auth logic when Supabase is connected
-    console.log('Auth form submitted:', { mode, formData });
-    onClose();
+    setLoading(true);
+
+    try {
+      const { error } = mode === 'login' 
+        ? await signIn(formData.email, formData.password)
+        : await signUp(formData.email, formData.password, formData.name);
+
+      if (!error) {
+        onClose();
+        setFormData({ name: '', email: '', password: '' });
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const isLogin = mode === 'login';
@@ -118,8 +132,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             </div>
           </div>
 
-          <Button type="submit" variant="hero" className="w-full" size="lg">
-            {isLogin ? 'Sign In' : 'Create Account'}
+          <Button type="submit" variant="hero" className="w-full" size="lg" disabled={loading}>
+            {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Create Account')}
           </Button>
 
           <div className="text-center">

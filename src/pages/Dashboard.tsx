@@ -3,63 +3,42 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { MoodSelector } from '@/components/mood/MoodSelector';
 import { Calendar, TrendingUp, Heart, BarChart3, Plus } from 'lucide-react';
-
-interface MoodEntry {
-  id: string;
-  emoji: string;
-  label: string;
-  note: string;
-  date: Date;
-}
+import { useAuth } from '@/contexts/AuthContext';
+import { useMoodData } from '@/hooks/useMoodData';
+import { useNavigate } from 'react-router-dom';
 
 export const Dashboard = () => {
-  const [moodEntries, setMoodEntries] = useState<MoodEntry[]>([
-    {
-      id: '1',
-      emoji: '😊',
-      label: 'Happy',
-      note: 'Had a great day at work and spent time with friends!',
-      date: new Date('2024-01-15'),
-    },
-    {
-      id: '2',
-      emoji: '😌',
-      label: 'Calm',
-      note: 'Meditation session helped me feel centered.',
-      date: new Date('2024-01-14'),
-    },
-    {
-      id: '3',
-      emoji: '😢',
-      label: 'Sad',
-      note: 'Feeling a bit down today, missing family.',
-      date: new Date('2024-01-13'),
-    },
-  ]);
-
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const { moodEntries, todaysMood, addMood, isAddingMood } = useMoodData();
   const [showMoodSelector, setShowMoodSelector] = useState(false);
 
-  const handleMoodSubmit = (mood: { emoji: string; label: string; note: string }) => {
-    const newEntry: MoodEntry = {
-      id: Date.now().toString(),
-      emoji: mood.emoji,
-      label: mood.label,
-      note: mood.note,
-      date: new Date(),
-    };
-    setMoodEntries([newEntry, ...moodEntries]);
+  // Redirect to login if not authenticated
+  React.useEffect(() => {
+    if (!user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
+
+  if (!user) {
+    return null;
+  }
+
+  const handleMoodSubmit = (mood: {
+    mood: string;
+    emoji: string;
+    intensity: number;
+    note?: string;
+  }) => {
+    addMood(mood);
     setShowMoodSelector(false);
   };
 
-  const todaysMood = moodEntries.find(entry => 
-    entry.date.toDateString() === new Date().toDateString()
-  );
-
   const stats = {
     totalEntries: moodEntries.length,
-    streak: 5, // Mock streak data
-    mostFrequentMood: '😊',
-    weeklyAverage: 4.2,
+    streak: 5, // TODO: Calculate actual streak
+    mostFrequentMood: moodEntries.length > 0 ? moodEntries[0].emoji : '😊',
+    weeklyAverage: 7.5, // TODO: Calculate actual average
   };
 
   return (
@@ -72,7 +51,7 @@ export const Dashboard = () => {
           </h1>
           <p className="text-lg text-muted-foreground">
             {todaysMood 
-              ? `You're feeling ${todaysMood.label.toLowerCase()} today ${todaysMood.emoji}` 
+              ? `You're feeling ${todaysMood.mood} today ${todaysMood.emoji}` 
               : "How are you feeling today? Let's track your mood!"
             }
           </p>
@@ -125,10 +104,10 @@ export const Dashboard = () => {
                   <div className="flex items-center space-x-4 p-4 bg-gradient-light rounded-lg">
                     <div className="text-4xl">{todaysMood.emoji}</div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold">{todaysMood.label}</h3>
-                      <p className="text-muted-foreground">{todaysMood.note}</p>
+                      <h3 className="text-xl font-semibold capitalize">{todaysMood.mood.replace('_', ' ')}</h3>
+                      <p className="text-muted-foreground">{todaysMood.note || 'No note'}</p>
                       <p className="text-sm text-muted-foreground mt-1">
-                        Logged at {todaysMood.date.toLocaleTimeString()}
+                        Intensity: {todaysMood.intensity}/10 • Logged at {new Date(todaysMood.created_at).toLocaleTimeString()}
                       </p>
                     </div>
                   </div>
@@ -207,12 +186,12 @@ export const Dashboard = () => {
                   <div key={entry.id} className="flex items-center space-x-3 p-3 bg-muted/50 rounded-lg">
                     <div className="text-2xl">{entry.emoji}</div>
                     <div className="flex-1 min-w-0">
-                      <div className="font-medium">{entry.label}</div>
+                      <div className="font-medium capitalize">{entry.mood.replace('_', ' ')}</div>
                       <div className="text-sm text-muted-foreground truncate">
                         {entry.note || 'No note'}
                       </div>
                       <div className="text-xs text-muted-foreground">
-                        {entry.date.toLocaleDateString()}
+                        {new Date(entry.created_at).toLocaleDateString()} • Intensity: {entry.intensity}/10
                       </div>
                     </div>
                   </div>
@@ -237,7 +216,10 @@ export const Dashboard = () => {
                 ✕
               </Button>
             </div>
-            <MoodSelector onMoodSubmit={handleMoodSubmit} />
+            <MoodSelector 
+              onMoodSelect={handleMoodSubmit} 
+              isLoading={isAddingMood}
+            />
           </div>
         </div>
       )}
