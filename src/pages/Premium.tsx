@@ -1,10 +1,44 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Check, Crown, Sparkles, BarChart3, Brain, Calendar, Shield } from 'lucide-react';
 
 export const Premium = () => {
+  const { user } = useAuth();
+  const { toast } = useToast();
+
+  const handleUpgrade = async (planType: 'monthly' | 'yearly') => {
+    if (!user) {
+      toast({
+        title: "Please log in",
+        description: "You need to be logged in to upgrade to premium.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase.functions.invoke('create-payment', {
+        body: { planType }
+      });
+
+      if (error) throw error;
+
+      if (data.url) {
+        window.open(data.url, '_blank');
+      }
+    } catch (error) {
+      toast({
+        title: "Payment Error",
+        description: "Could not create payment session. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
   const features = {
     free: [
       '3 daily mood entries',
@@ -147,7 +181,19 @@ export const Premium = () => {
                   ))}
                 </ul>
 
-                <Button variant={plan.variant} className="w-full" size="lg">
+                <Button 
+                  variant={plan.variant} 
+                  className="w-full" 
+                  size="lg"
+                  onClick={() => {
+                    if (plan.name === 'Free') {
+                      // Handle free plan selection
+                      return;
+                    }
+                    const planType = plan.name === 'Premium Yearly' ? 'yearly' : 'monthly';
+                    handleUpgrade(planType);
+                  }}
+                >
                   {plan.cta}
                 </Button>
               </CardContent>
@@ -247,7 +293,12 @@ export const Premium = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="glassmorphism" size="lg" className="bg-white/20 text-white border-white/30 hover:bg-white/30">
+            <Button 
+              variant="glassmorphism" 
+              size="lg" 
+              className="bg-white/20 text-white border-white/30 hover:bg-white/30"
+              onClick={() => handleUpgrade('monthly')}
+            >
               Start 7-Day Free Trial
             </Button>
             <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">

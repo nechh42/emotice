@@ -71,18 +71,29 @@ export const useMoodData = () => {
           ...newMood,
           user_id: user.id,
           date_part: today,
+          ai_processing_status: 'pending',
         })
         .select()
         .single();
 
       if (error) throw error;
+
+      // Generate AI insights for the mood entry
+      try {
+        await supabase.functions.invoke('generate-mood-insights', {
+          body: { moodEntry: data }
+        });
+      } catch (aiError) {
+        console.log('AI insights generation failed, continuing without:', aiError);
+      }
+
       return data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['moodEntries'] });
       toast({
         title: "Mood recorded!",
-        description: "Your mood has been successfully saved.",
+        description: "Your mood has been successfully saved. AI insights are being generated.",
       });
     },
     onError: (error) => {

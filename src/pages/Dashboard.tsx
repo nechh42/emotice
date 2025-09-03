@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { MoodSelector } from '@/components/mood/MoodSelector';
+import { MusicIntegration } from '@/components/features/MusicIntegration';
+import { AstrologyInsights } from '@/components/features/AstrologyInsights';
+import { MotivationBot } from '@/components/features/MotivationBot';
 import { Calendar, TrendingUp, Heart, BarChart3, Plus } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useMoodData } from '@/hooks/useMoodData';
@@ -147,6 +150,19 @@ export const Dashboard = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* New Features Row */}
+            <div className="grid lg:grid-cols-3 gap-6">
+              <MusicIntegration 
+                currentMood={todaysMood?.mood || 'neutral'} 
+                intensity={todaysMood?.intensity || 5}
+              />
+              <AstrologyInsights currentMood={todaysMood?.mood || 'neutral'} />
+              <MotivationBot 
+                currentMood={todaysMood?.mood || 'neutral'}
+                userName={user?.user_metadata?.full_name || 'Friend'}
+              />
+            </div>
           </div>
 
           {/* Sidebar */}
