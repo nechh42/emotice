@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "dashboard": "Painel",
+    "premium": "Premium",
+    "profile": "Perfil",
+    "login": "Entrar",
+    "logout": "Sair"
+  },
+  "premium": {
+    "title": "Desbloqueie Seu Potencial Completo",
+    "monthly": "Mensal",
+    "yearly": "Anual",
+    "free": "Grátis"
+  }
+}

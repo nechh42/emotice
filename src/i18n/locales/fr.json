@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "dashboard": "Tableau de Bord",
+    "premium": "Premium",
+    "profile": "Profil",
+    "login": "Se Connecter",
+    "logout": "Se Déconnecter"
+  },
+  "landing": {
+    "title": "Suivez Votre Humeur, Découvrez la Paix Intérieure",
+    "subtitle": "Suivez votre humeur quotidienne avec Emotice, obtenez des insights alimentés par l'IA et soutenez votre développement personnel.",
+    "startJourney": "Commencez Votre Voyage",
+    "learnMore": "En Savoir Plus"
+  },
+  "premium": {
+    "title": "Débloquez Votre Plein Potentiel",
+    "subtitle": "Amenez votre parcours de bien-être au niveau supérieur avec des analyses avancées, des insights IA et un suivi illimité.",
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
+    "free": "Gratuit"
+  }
+}

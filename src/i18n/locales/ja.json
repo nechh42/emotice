@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "dashboard": "ダッシュボード",
+    "premium": "プレミアム",
+    "profile": "プロフィール",
+    "login": "ログイン",
+    "logout": "ログアウト"
+  },
+  "premium": {
+    "title": "あなたの可能性を最大限に引き出す",
+    "monthly": "月額",
+    "yearly": "年額",
+    "free": "無料"
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "premium": "Premium",
+    "profile": "Profile",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "landing": {
+    "title": "Track Your Mood, Discover Inner Peace",
+    "subtitle": "Track your daily mood with Emotice, get AI-powered insights, and support your personal development.",
+    "startJourney": "Start Your Journey",
+    "learnMore": "Learn More",
+    "features": {
+      "moodTracking": {
+        "title": "Smart Mood Tracking",
+        "description": "Easily record your daily mood and see changes over time"
+      },
+      "aiInsights": {
+        "title": "AI-Powered Insights",
+        "description": "Get personalized recommendations and mood analysis"
+      },
+      "wellness": {
+        "title": "Wellness Guide",
+        "description": "Personal development supported by astrology, music and motivation"
+      }
+    }
+  },
+  "dashboard": {
+    "welcomeBack": "Welcome Back",
+    "howAreYouFeeling": "How are you feeling today?",
+    "addMoodEntry": "Add mood entry",
+    "recentEntries": "Recent Entries",
+    "insights": "Insights",
+    "musicForMood": "Music for Your Mood",
+    "cosmicInsights": "Cosmic Insights",
+    "motivation": "Motivation"
+  },
+  "premium": {
+    "title": "Unlock Your Full Potential",
+    "subtitle": "Take your wellness journey to the next level with advanced analytics, AI insights, and unlimited tracking.",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "free": "Free",
+    "getStarted": "Get Started",
+    "upgradeToPremium": "Upgrade to Premium",
+    "chooseYearly": "Choose Yearly",
+    "bestValue": "Best Value",
+    "features": {
+      "moodEntries": "daily mood entries",
+      "basicTracking": "Basic mood tracking",
+      "simpleCharts": "Simple charts",
+      "mobileAccess": "Mobile app access",
+      "unlimitedEntries": "Unlimited mood entries",
+      "advancedAnalytics": "Advanced analytics & insights",
+      "aiPredictions": "AI-powered mood predictions",
+      "trendAnalysis": "Detailed trend analysis",
+      "dataExport": "Export data functionality",
+      "premiumSupport": "Premium support",
+      "darkMode": "Dark mode & themes",
+      "calendarView": "Calendar view",
+      "correlationInsights": "Mood correlation insights",
+      "personalizedRecommendations": "Personalized recommendations"
+    },
+    "freeTrialCta": "Start 7-Day Free Trial",
+    "comparePlans": "Compare Plans",
+    "noCredit": "No credit card required • Cancel anytime • 30-day money-back guarantee"
+  },
+  "mood": {
+    "veryHappy": "Very Happy",
+    "happy": "Happy",
+    "good": "Good",
+    "neutral": "Neutral",
+    "sad": "Sad",
+    "worried": "Worried",
+    "verySad": "Very Sad",
+    "anxious": "Anxious",
+    "intensity": "Intensity",
+    "addNote": "Add note",
+    "save": "Save",
+    "activities": "Activities",
+    "location": "Location",
+    "weather": "Weather"
+  },
+  "music": {
+    "title": "Music for Your Mood",
+    "basedOnMood": "Based on your current {{mood}} mood with intensity {{intensity}}/10",
+    "connect": "Connect",
+    "connectSpotify": "Connect your Spotify or Apple Music"
+  },
+  "astrology": {
+    "title": "Cosmic Insights",
+    "moonPhase": "Moon Phase",
+    "forYourEnergy": "For Your Current Energy",
+    "element": "Element",
+    "color": "Color",
+    "stone": "Stone",
+    "todaysGuidance": "Today's Cosmic Guidance",
+    "manifestation": "Quick Manifestation"
+  },
+  "motivation": {
+    "title": "Your Motivation Companion",
+    "hello": "Hello",
+    "digitalTotem": "Your Digital Totem",
+    "justForYou": "Just for You",
+    "newQuote": "New Quote",
+    "shareTotem": "Share Totem",
+    "saveFavorite": "Save Favorite"
+  },
+  "profile": {
+    "title": "Profile",
+    "personalInfo": "Personal Information",
+    "preferences": "Preferences",
+    "language": "Language",
+    "theme": "Theme",
+    "notifications": "Notifications",
+    "privacy": "Privacy",
+    "saveChanges": "Save Changes"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "next": "Next",
+    "finish": "Finish"
+  },
+  "legal": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact"
+  }
+}

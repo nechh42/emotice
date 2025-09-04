@@ -1,0 +1,138 @@
+{
+  "nav": {
+    "dashboard": "Kontrol Paneli",
+    "premium": "Premium",
+    "profile": "Profil",
+    "login": "Giriş Yap",
+    "logout": "Çıkış Yap"
+  },
+  "landing": {
+    "title": "Ruh Halinizi Takip Edin, İç Huzuru Keşfedin",
+    "subtitle": "Emotice ile günlük ruh halinizi takip edin, AI destekli içgörüler alın ve kişisel gelişiminizi destekleyin.",
+    "startJourney": "Yolculuğunuza Başlayın",
+    "learnMore": "Daha Fazla Bilgi",
+    "features": {
+      "moodTracking": {
+        "title": "Akıllı Ruh Hali Takibi",
+        "description": "Günlük ruh halinizi kolayca kaydedin ve zamanla değişimleri görün"
+      },
+      "aiInsights": {
+        "title": "AI Destekli İçgörüler",
+        "description": "Kişiselleştirilmiş öneriler ve ruh hali analizleri alın"
+      },
+      "wellness": {
+        "title": "Wellness Rehberi",
+        "description": "Astroloji, müzik ve motivasyon ile desteklenen kişisel gelişim"
+      }
+    }
+  },
+  "dashboard": {
+    "welcomeBack": "Tekrar Hoş Geldiniz",
+    "howAreYouFeeling": "Bugün nasıl hissediyorsunuz?",
+    "addMoodEntry": "Ruh hali ekle",
+    "recentEntries": "Son Kayıtlar",
+    "insights": "İçgörüler",
+    "musicForMood": "Ruh Halinize Özel Müzik",
+    "cosmicInsights": "Kozmik İçgörüler",
+    "motivation": "Motivasyon"
+  },
+  "premium": {
+    "title": "Tam Potansiyelinizi Açığa Çıkarın",
+    "subtitle": "Gelişmiş analizler, AI içgörüleri ve sınırsız takip ile wellness yolculuğunuzu bir üst seviyeye taşıyın.",
+    "monthly": "Aylık",
+    "yearly": "Yıllık", 
+    "free": "Ücretsiz",
+    "getStarted": "Başlayın",
+    "upgradeToPremium": "Premium'a Yükseltin",
+    "chooseYearly": "Yıllık Seçin",
+    "bestValue": "En İyi Değer",
+    "features": {
+      "moodEntries": "günlük ruh hali kaydı",
+      "basicTracking": "Temel ruh hali takibi",
+      "simpleCharts": "Basit grafikler",
+      "mobileAccess": "Mobil uygulama erişimi",
+      "unlimitedEntries": "Sınırsız ruh hali kayıtları",
+      "advancedAnalytics": "Gelişmiş analizler ve içgörüler",
+      "aiPredictions": "AI destekli ruh hali tahminleri",
+      "trendAnalysis": "Detaylı trend analizi",
+      "dataExport": "Veri dışa aktarma",
+      "premiumSupport": "Premium destek",
+      "darkMode": "Karanlık mod ve temalar",
+      "calendarView": "Takvim görünümü",
+      "correlationInsights": "Ruh hali korelasyon içgörüleri",
+      "personalizedRecommendations": "Kişiselleştirilmiş öneriler"
+    },
+    "freeTrialCta": "7 Günlük Ücretsiz Deneme Başlatın",
+    "comparePlans": "Planları Karşılaştır",
+    "noCredit": "Kredi kartı gerekmez • İstediğiniz zaman iptal • 30 gün para iade garantisi"
+  },
+  "mood": {
+    "veryHappy": "Çok Mutlu",
+    "happy": "Mutlu", 
+    "good": "İyi",
+    "neutral": "Nötr",
+    "sad": "Üzgün",
+    "worried": "Endişeli",
+    "verySad": "Çok Üzgün",
+    "anxious": "Kaygılı",
+    "intensity": "Yoğunluk",
+    "addNote": "Not ekle",
+    "save": "Kaydet",
+    "activities": "Aktiviteler",
+    "location": "Konum",
+    "weather": "Hava Durumu"
+  },
+  "music": {
+    "title": "Ruh Halinize Özel Müzik",
+    "basedOnMood": "Mevcut {{mood}} ruh halinize ve {{intensity}}/10 yoğunluğuna göre",
+    "connect": "Bağlan",
+    "connectSpotify": "Spotify veya Apple Music'i bağlayın"
+  },
+  "astrology": {
+    "title": "Kozmik İçgörüler",
+    "moonPhase": "Ay Evresi",
+    "forYourEnergy": "Mevcut Enerjiniz İçin",
+    "element": "Element",
+    "color": "Renk", 
+    "stone": "Taş",
+    "todaysGuidance": "Bugünün Kozmik Rehberliği",
+    "manifestation": "Hızlı Manifestasyon"
+  },
+  "motivation": {
+    "title": "Motivasyon Arkadaşınız",
+    "hello": "Merhaba",
+    "digitalTotem": "Dijital Totem",
+    "justForYou": "Sadece Sizin İçin",
+    "newQuote": "Yeni Söz",
+    "shareTotem": "Totem Paylaş",
+    "saveFavorite": "Favorilere Ekle"
+  },
+  "profile": {
+    "title": "Profil",
+    "personalInfo": "Kişisel Bilgiler",
+    "preferences": "Tercihler",
+    "language": "Dil",
+    "theme": "Tema",
+    "notifications": "Bildirimler",
+    "privacy": "Gizlilik",
+    "saveChanges": "Değişiklikleri Kaydet"
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "success": "Başarılı",
+    "cancel": "İptal",
+    "confirm": "Onayla",
+    "save": "Kaydet",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "back": "Geri",
+    "next": "İleri",
+    "finish": "Bitir"
+  },
+  "legal": {
+    "privacy": "Gizlilik Politikası",
+    "terms": "Kullanım Şartları",
+    "contact": "İletişim"
+  }
+}

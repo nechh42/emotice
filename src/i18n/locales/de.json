@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "premium": "Premium",
+    "profile": "Profil",
+    "login": "Anmelden",
+    "logout": "Abmelden"
+  },
+  "landing": {
+    "title": "Verfolgen Sie Ihre Stimmung, Entdecken Sie Inneren Frieden",
+    "subtitle": "Verfolgen Sie Ihre tägliche Stimmung mit Emotice, erhalten Sie KI-gestützte Einblicke und unterstützen Sie Ihre persönliche Entwicklung.",
+    "startJourney": "Beginnen Sie Ihre Reise",
+    "learnMore": "Mehr Erfahren"
+  },
+  "premium": {
+    "title": "Schöpfen Sie Ihr Volles Potenzial Aus",
+    "subtitle": "Bringen Sie Ihre Wellness-Reise auf die nächste Stufe mit erweiterten Analysen, KI-Einblicken und unbegrenzter Verfolgung.",
+    "monthly": "Monatlich",
+    "yearly": "Jährlich",
+    "free": "Kostenlos"
+  }
+}

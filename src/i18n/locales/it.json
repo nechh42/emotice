@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "premium": "Premium",
+    "profile": "Profilo",
+    "login": "Accedi",
+    "logout": "Esci"
+  },
+  "premium": {
+    "title": "Sblocca il Tuo Pieno Potenziale",
+    "monthly": "Mensile",
+    "yearly": "Annuale",
+    "free": "Gratuito"
+  }
+}

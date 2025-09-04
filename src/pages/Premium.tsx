@@ -73,8 +73,8 @@ export const Premium = () => {
     },
     {
       name: 'Premium',
-      price: '$9.99',
-      period: '/month',
+      price: '₺49.99',
+      period: '/ay',
       description: 'Unlock powerful insights and unlimited tracking',
       features: features.premium,
       cta: 'Upgrade to Premium',
@@ -82,9 +82,9 @@ export const Premium = () => {
       variant: 'hero' as const,
     },
     {
-      name: 'Premium Yearly',
-      price: '$99',
-      period: '/year',
+      name: 'Premium Yıllık',
+      price: '₺499',
+      period: '/yıl',
       description: 'Save 17% with our annual plan',
       features: features.premium,
       cta: 'Choose Yearly',

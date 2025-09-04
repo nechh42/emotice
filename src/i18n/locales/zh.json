@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "dashboard": "仪表板",
+    "premium": "高级版",
+    "profile": "档案",
+    "login": "登录",
+    "logout": "退出"
+  },
+  "premium": {
+    "title": "释放您的全部潜力",
+    "monthly": "月度",
+    "yearly": "年度",
+    "free": "免费"
+  }
+}

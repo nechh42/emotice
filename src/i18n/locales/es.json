@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "dashboard": "Panel",
+    "premium": "Premium",
+    "profile": "Perfil",
+    "login": "Iniciar Sesión",
+    "logout": "Cerrar Sesión"
+  },
+  "landing": {
+    "title": "Rastrea tu Estado de Ánimo, Descubre la Paz Interior",
+    "subtitle": "Rastrea tu estado de ánimo diario con Emotice, obtén insights impulsados por IA y apoya tu desarrollo personal.",
+    "startJourney": "Comienza tu Viaje",
+    "learnMore": "Aprende Más",
+    "features": {
+      "moodTracking": {
+        "title": "Seguimiento Inteligente del Estado de Ánimo",
+        "description": "Registra fácilmente tu estado de ánimo diario y ve los cambios con el tiempo"
+      },
+      "aiInsights": {
+        "title": "Insights Impulsados por IA",
+        "description": "Obtén recomendaciones personalizadas y análisis del estado de ánimo"
+      },
+      "wellness": {
+        "title": "Guía de Bienestar",
+        "description": "Desarrollo personal apoyado por astrología, música y motivación"
+      }
+    }
+  },
+  "premium": {
+    "title": "Desbloquea tu Potencial Completo",
+    "subtitle": "Lleva tu viaje de bienestar al siguiente nivel con análisis avanzados, insights de IA y seguimiento ilimitado.",
+    "monthly": "Mensual",
+    "yearly": "Anual",
+    "free": "Gratis"
+  }
+}

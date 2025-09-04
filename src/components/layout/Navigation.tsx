@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Heart, Menu, X, User, BarChart3, Crown, LogOut } from 'lucide-react';
 import { AuthModal } from '@/components/auth/AuthModal';
 import { useAuth } from '@/contexts/AuthContext';
+import { LanguageSelector } from '@/components/LanguageSelector';
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useTranslation();
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
   const location = useLocation();
@@ -45,26 +48,27 @@ export const Navigation = () => {
                 className={`flex items-center space-x-1 transition-colors ${isActive('/dashboard') ? 'text-primary font-semibold' : 'text-muted-foreground hover:text-primary'}`}
               >
                 <BarChart3 className="h-4 w-4" />
-                <span>Dashboard</span>
+                <span>{t('nav.dashboard')}</span>
               </Link>
               <Link 
                 to="/premium" 
                 className={`flex items-center space-x-1 transition-colors ${isActive('/premium') ? 'text-primary font-semibold' : 'text-muted-foreground hover:text-primary'}`}
               >
                 <Crown className="h-4 w-4" />
-                <span>Premium</span>
+                <span>{t('nav.premium')}</span>
               </Link>
               <Link 
                 to="/profile" 
                 className={`flex items-center space-x-1 transition-colors ${isActive('/profile') ? 'text-primary font-semibold' : 'text-muted-foreground hover:text-primary'}`}
               >
                 <User className="h-4 w-4" />
-                <span>Profile</span>
+                <span>{t('nav.profile')}</span>
               </Link>
             </div>
 
             {/* Desktop Auth Buttons */}
             <div className="hidden md:flex items-center space-x-3">
+              <LanguageSelector />
               {user ? (
                 <div className="flex items-center space-x-3">
                   <span className="text-sm text-muted-foreground">
@@ -77,24 +81,26 @@ export const Navigation = () => {
               ) : (
                 <>
                   <Button variant="ghost" onClick={() => openAuth('login')}>
-                    Log In
+                    {t('nav.login')}
                   </Button>
                   <Button variant="hero" onClick={() => openAuth('signup')}>
-                    Sign Up
+                    {t('landing.startJourney')}
                   </Button>
                 </>
               )}
             </div>
 
             {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
+            <div className="md:hidden flex items-center space-x-2">
+              <LanguageSelector />
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </Button>
+            </div>
           </div>
 
           {/* Mobile Menu */}
@@ -114,7 +120,7 @@ export const Navigation = () => {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <BarChart3 className="h-4 w-4" />
-                  <span>Dashboard</span>
+                  <span>{t('nav.dashboard')}</span>
                 </Link>
                 <Link 
                   to="/premium" 
@@ -122,7 +128,7 @@ export const Navigation = () => {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Crown className="h-4 w-4" />
-                  <span>Premium</span>
+                  <span>{t('nav.premium')}</span>
                 </Link>
                 <Link 
                   to="/profile" 
@@ -130,7 +136,7 @@ export const Navigation = () => {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <User className="h-4 w-4" />
-                  <span>Profile</span>
+                  <span>{t('nav.profile')}</span>
                 </Link>
                 <div className="pt-4 border-t border-white/20 flex flex-col space-y-2">
                   {user ? (
@@ -146,10 +152,10 @@ export const Navigation = () => {
                   ) : (
                     <>
                       <Button variant="ghost" onClick={() => { openAuth('login'); setIsMenuOpen(false); }}>
-                        Log In
+                        {t('nav.login')}
                       </Button>
                       <Button variant="hero" onClick={() => { openAuth('signup'); setIsMenuOpen(false); }}>
-                        Sign Up
+                        {t('landing.startJourney')}
                       </Button>
                     </>
                   )}
