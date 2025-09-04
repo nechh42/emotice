@@ -62,32 +62,44 @@ export const Premium = () => {
 
   const plans = [
     {
-      name: 'Free',
+      name: 'Free Trial',
       price: '$0',
-      period: 'forever',
-      description: 'Perfect for getting started with mood tracking',
-      features: features.free,
-      cta: 'Get Started',
+      period: '/3 days',
+      description: 'Try all premium features for free',
+      features: features.premium,
+      cta: 'Start Free Trial',
       popular: false,
       variant: 'outline' as const,
+      badge: 'Try Free',
     },
     {
-      name: 'Premium',
-      price: '₺49.99',
-      period: '/ay',
-      description: 'Unlock powerful insights and unlimited tracking',
+      name: '1 Month',
+      price: '$10',
+      period: '/month',
+      description: 'Perfect for short-term mood tracking',
       features: features.premium,
-      cta: 'Upgrade to Premium',
+      cta: 'Choose 1 Month',
+      popular: false,
+      variant: 'secondary' as const,
+    },
+    {
+      name: '3 Months',
+      price: '$25',
+      period: '/3 months',
+      description: 'Great value for medium-term tracking',
+      features: features.premium,
+      cta: 'Choose 3 Months',
       popular: true,
       variant: 'hero' as const,
+      badge: 'Popular',
     },
     {
-      name: 'Premium Yıllık',
-      price: '₺499',
-      period: '/yıl',
-      description: 'Save 17% with our annual plan',
+      name: '6 Months',
+      price: '$45',
+      period: '/6 months',
+      description: 'Best value for long-term wellness journey',
       features: features.premium,
-      cta: 'Choose Yearly',
+      cta: 'Choose 6 Months',
       popular: false,
       variant: 'secondary' as const,
       badge: 'Best Value',
@@ -135,7 +147,7 @@ export const Premium = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {plans.map((plan, index) => (
             <Card 
               key={index} 
@@ -186,12 +198,14 @@ export const Premium = () => {
                   className="w-full" 
                   size="lg"
                   onClick={() => {
-                    if (plan.name === 'Free') {
-                      // Handle free plan selection
+                    if (plan.name === 'Free Trial') {
+                      // Handle free trial selection
                       return;
                     }
-                    const planType = plan.name === 'Premium Yearly' ? 'yearly' : 'monthly';
-                    handleUpgrade(planType);
+                    let planType = 'monthly';
+                    if (plan.name === '3 Months') planType = 'quarterly';
+                    if (plan.name === '6 Months') planType = 'biannual';
+                    handleUpgrade(planType as 'monthly' | 'yearly');
                   }}
                 >
                   {plan.cta}
@@ -299,7 +313,7 @@ export const Premium = () => {
               className="bg-white/20 text-white border-white/30 hover:bg-white/30"
               onClick={() => handleUpgrade('monthly')}
             >
-              Start 7-Day Free Trial
+              Start 3-Day Free Trial
             </Button>
             <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
               Compare Plans
