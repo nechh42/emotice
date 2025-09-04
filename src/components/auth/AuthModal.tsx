@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Heart, Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { OnboardingSurvey } from '@/components/onboarding/OnboardingSurvey';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -21,6 +22,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -38,7 +40,12 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         : await signUp(formData.email, formData.password, formData.name);
 
       if (!error) {
-        onClose();
+        if (mode === 'signup') {
+          // Show onboarding survey for new users
+          setShowOnboarding(true);
+        } else {
+          onClose();
+        }
         setFormData({ name: '', email: '', password: '' });
       }
     } finally {
@@ -46,111 +53,123 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     }
   };
 
+  const handleOnboardingComplete = () => {
+    setShowOnboarding(false);
+    onClose();
+  };
+
   const isLogin = mode === 'login';
 
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader className="text-center">
-          <div className="flex justify-center mb-4">
-            <div className="bg-gradient-primary p-3 rounded-xl shadow-primary">
-              <Heart className="h-8 w-8 text-white" />
+    <>
+      <Dialog open={isOpen && !showOnboarding} onOpenChange={onClose}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader className="text-center">
+            <div className="flex justify-center mb-4">
+              <div className="bg-gradient-primary p-3 rounded-xl shadow-primary">
+                <Heart className="h-8 w-8 text-white" />
+              </div>
             </div>
-          </div>
-          <DialogTitle className="text-2xl font-bold gradient-text">
-            {isLogin ? 'Welcome Back' : 'Join Emotice'}
-          </DialogTitle>
-          <p className="text-muted-foreground">
-            {isLogin 
-              ? 'Track your mood and continue your wellness journey' 
-              : 'Start your emotional wellness journey today'
-            }
-          </p>
-        </DialogHeader>
+            <DialogTitle className="text-2xl font-bold gradient-text">
+              {isLogin ? 'Welcome Back' : 'Join Emotice'}
+            </DialogTitle>
+            <p className="text-muted-foreground">
+              {isLogin 
+                ? 'Track your mood and continue your wellness journey' 
+                : 'Start your emotional wellness journey today'
+              }
+            </p>
+          </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {!isLogin && (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {!isLogin && (
+              <div className="space-y-2">
+                <Label htmlFor="name">Full Name</Label>
+                <div className="relative">
+                  <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder="Enter your full name"
+                    className="pl-10"
+                    value={formData.name}
+                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                    required
+                  />
+                </div>
+              </div>
+            )}
+
             <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
+              <Label htmlFor="email">Email</Label>
               <div className="relative">
-                <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                 <Input
-                  id="name"
-                  type="text"
-                  placeholder="Enter your full name"
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email"
                   className="pl-10"
-                  value={formData.name}
-                  onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                  value={formData.email}
+                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                   required
                 />
               </div>
             </div>
-          )}
 
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                id="email"
-                type="email"
-                placeholder="Enter your email"
-                className="pl-10"
-                value={formData.email}
-                onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                required
-              />
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Input
+                  id="password"
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Enter your password"
+                  className="pl-10 pr-10"
+                  value={formData.password}
+                  onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
+                  required
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4 text-muted-foreground" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-muted-foreground" />
+                  )}
+                </Button>
+              </div>
             </div>
-          </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                id="password"
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Enter your password"
-                className="pl-10 pr-10"
-                value={formData.password}
-                onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
-                required
-              />
-              <Button
-                type="button"
-                variant="ghost"
-                size="icon"
-                className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? (
-                  <EyeOff className="h-4 w-4 text-muted-foreground" />
-                ) : (
-                  <Eye className="h-4 w-4 text-muted-foreground" />
-                )}
-              </Button>
+            <Button type="submit" variant="hero" className="w-full" size="lg" disabled={loading}>
+              {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Create Account')}
+            </Button>
+
+            <div className="text-center">
+              <p className="text-sm text-muted-foreground">
+                {isLogin ? "Don't have an account? " : "Already have an account? "}
+                <Button
+                  type="button"
+                  variant="link"
+                  className="p-0 h-auto font-semibold"
+                  onClick={() => onSwitchMode(isLogin ? 'signup' : 'login')}
+                >
+                  {isLogin ? 'Sign up' : 'Sign in'}
+                </Button>
+              </p>
             </div>
-          </div>
+          </form>
+        </DialogContent>
+      </Dialog>
 
-          <Button type="submit" variant="hero" className="w-full" size="lg" disabled={loading}>
-            {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Create Account')}
-          </Button>
-
-          <div className="text-center">
-            <p className="text-sm text-muted-foreground">
-              {isLogin ? "Don't have an account? " : "Already have an account? "}
-              <Button
-                type="button"
-                variant="link"
-                className="p-0 h-auto font-semibold"
-                onClick={() => onSwitchMode(isLogin ? 'signup' : 'login')}
-              >
-                {isLogin ? 'Sign up' : 'Sign in'}
-              </Button>
-            </p>
-          </div>
-        </form>
-      </DialogContent>
-    </Dialog>
+      <OnboardingSurvey 
+        isOpen={showOnboarding} 
+        onComplete={handleOnboardingComplete} 
+      />
+    </>
   );
 };

@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Bot, RefreshCw, Heart, Sparkles, Quote } from 'lucide-react';
+import { Bot, RefreshCw, Heart, Sparkles, Quote, Send, Zap, Star } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 interface MotivationBotProps {
   currentMood?: string;
@@ -15,6 +18,10 @@ export const MotivationBot: React.FC<MotivationBotProps> = ({
 }) => {
   const [currentQuote, setCurrentQuote] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [aiQuote, setAiQuote] = useState('');
+  const [loadingAI, setLoadingAI] = useState(false);
+  const { user } = useAuth();
+  const { toast } = useToast();
 
   // Mood-specific motivational quotes and affirmations
   const getMotivationalContent = (mood: string) => {
@@ -94,6 +101,48 @@ export const MotivationBot: React.FC<MotivationBotProps> = ({
     };
 
     return totems[mood as keyof typeof totems] || totems.neutral;
+  };
+
+  const generateAIQuote = async () => {
+    if (!user) {
+      toast({
+        title: "Please log in",
+        description: "You need to be logged in to get AI-powered motivation.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setLoadingAI(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('generate-mood-insights', {
+        body: { 
+          mood: currentMood,
+          type: 'motivation',
+          userName,
+          context: `User is feeling ${currentMood} and needs personalized motivation` 
+        }
+      });
+
+      if (error) throw error;
+      
+      if (data?.motivation) {
+        setAiQuote(data.motivation);
+        toast({
+          title: "AI Motivation Generated! ✨",
+          description: "Your personalized message is ready.",
+        });
+      }
+    } catch (error) {
+      console.error('Error generating AI quote:', error);
+      toast({
+        title: "Oops!",
+        description: "Couldn't generate AI motivation. Try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoadingAI(false);
+    }
   };
 
   const generateNewQuote = () => {
@@ -190,6 +239,44 @@ export const MotivationBot: React.FC<MotivationBotProps> = ({
             )}
           </div>
         </div>
+
+        {/* AI-Powered Quote Section */}
+        {user && (
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <h3 className="font-semibold text-sm flex items-center space-x-2">
+                <Zap className="h-4 w-4 text-yellow-500" />
+                <span>AI-Powered Motivation</span>
+                <Badge variant="secondary" className="text-xs">
+                  <Star className="h-3 w-3 mr-1" />
+                  Premium
+                </Badge>
+              </h3>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={generateAIQuote}
+                disabled={loadingAI}
+                className="h-8"
+              >
+                <Send className={`h-3 w-3 ${loadingAI ? 'animate-pulse' : ''}`} />
+              </Button>
+            </div>
+            
+            <div className="p-4 border-l-4 border-yellow-400 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 rounded">
+              {loadingAI ? (
+                <div className="flex items-center space-x-2">
+                  <div className="animate-pulse text-sm">AI is crafting your personal message...</div>
+                  <Sparkles className="h-4 w-4 animate-pulse text-yellow-500" />
+                </div>
+              ) : aiQuote ? (
+                <p className="text-sm italic font-medium">"{aiQuote}"</p>
+              ) : (
+                <p className="text-sm text-muted-foreground">Click the button to get a personalized AI-generated motivation message!</p>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Quick Actions */}
         <div className="flex flex-wrap gap-2">
