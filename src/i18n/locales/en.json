@@ -1,4 +1,30 @@
 {
+  "app": {
+    "name": "Emotice",
+    "tagline": "Track your emotions, improve your wellness"
+  },
+  "auth": {
+    "sign_in": "Sign In",
+    "sign_up": "Sign Up",
+    "sign_out": "Sign Out",
+    "email": "Email",
+    "password": "Password",
+    "full_name": "Full Name",
+    "welcome_back": "Welcome Back!",
+    "create_account": "Create Account",
+    "forgot_password": "Forgot Password",
+    "signin_subtitle": "Continue your mood tracking journey",
+    "signup_subtitle": "Start improving your emotional health",
+    "email_placeholder": "example@email.com",
+    "password_placeholder": "Enter your password",
+    "full_name_placeholder": "Your Full Name",
+    "signin_success": "Successfully signed in",
+    "signup_success": "Account created! Check your email",
+    "account_created": "Account Created!",
+    "no_account": "Don't have an account? Sign up",
+    "have_account": "Already have an account? Sign in",
+    "terms_privacy": "By signing up you agree to our Terms of Service and Privacy Policy"
+  },
   "nav": {
     "dashboard": "Dashboard",
     "premium": "Premium",
@@ -27,14 +53,50 @@
     }
   },
   "dashboard": {
+    "welcome": "Welcome",
     "welcomeBack": "Welcome Back",
+    "today_mood": "Today's Mood",
     "howAreYouFeeling": "How are you feeling today?",
+    "add_mood": "Add Mood",
     "addMoodEntry": "Add mood entry",
+    "mood_history": "Mood History",
     "recentEntries": "Recent Entries",
+    "analytics": "Analytics",
     "insights": "Insights",
     "musicForMood": "Music for Your Mood",
     "cosmicInsights": "Cosmic Insights",
     "motivation": "Motivation"
+  },
+  "calendar": {
+    "mood_calendar": "Mood Calendar",
+    "entries": "Entries",
+    "avg_intensity": "Avg Intensity",
+    "top_mood": "Top Mood",
+    "high_mood": "High (8-10)",
+    "good_mood": "Good (6-7)",
+    "low_mood": "Low (3-5)",
+    "very_low": "Very Low (1-2)",
+    "view_analytics": "View Analytics"
+  },
+  "chart": {
+    "mood_trends": "Mood Trends",
+    "week": "Week",
+    "month": "Month",
+    "year": "Year",
+    "intensity": "Intensity",
+    "entries": "Entries",
+    "mood": "Mood",
+    "no_data": "No Data Available",
+    "start_tracking": "Start tracking your mood to see charts",
+    "avg_intensity": "Avg Intensity",
+    "total_entries": "Total Entries",
+    "trend": "Trend",
+    "consistency": "Consistency"
+  },
+  "cta": {
+    "start_tracking": "Start Tracking Today",
+    "learn_more": "Learn More",
+    "get_started_free": "Get Started Free"
   },
   "premium": {
     "title": "Unlock Your Full Potential",

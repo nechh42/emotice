@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Heart, Smartphone, BarChart3, Shield, Star, ArrowRight } from 'lucide-react';
+import { AuthModal } from '@/components/auth/AuthModal';
+import { useAuth } from '@/contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import heroImage from '@/assets/hero-image.jpg';
 import moodPreview from '@/assets/mood-preview.jpg';
 
 export const Landing = () => {
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authMode, setAuthMode] = useState<'login' | 'signup'>('signup');
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  React.useEffect(() => {
+    if (user) {
+      navigate('/dashboard');
+    }
+  }, [user, navigate]);
+
   const features = [
     {
       icon: <Heart className="h-8 w-8 text-primary" />,
@@ -66,12 +82,20 @@ export const Landing = () => {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button variant="hero" size="lg" className="group">
-                  Start Tracking Today
+                <Button 
+                  variant="hero" 
+                  size="lg" 
+                  className="group"
+                  onClick={() => {
+                    setAuthMode('signup');
+                    setShowAuthModal(true);
+                  }}
+                >
+                  {t('cta.start_tracking')}
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 <Button variant="outline" size="lg">
-                  Learn More
+                  {t('cta.learn_more')}
                 </Button>
               </div>
 
@@ -216,15 +240,30 @@ export const Landing = () => {
             Join thousands of users who are already improving their mental health with Emotice.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="glassmorphism" size="lg" className="bg-white/20 text-white border-white/30 hover:bg-white/30">
-              Get Started Free
+            <Button 
+              variant="glassmorphism" 
+              size="lg" 
+              className="bg-white/20 text-white border-white/30 hover:bg-white/30"
+              onClick={() => {
+                setAuthMode('signup');
+                setShowAuthModal(true);
+              }}
+            >
+              {t('cta.get_started_free')}
             </Button>
             <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
-              Learn More
+              {t('cta.learn_more')}
             </Button>
           </div>
         </div>
       </section>
+
+      <AuthModal 
+        isOpen={showAuthModal} 
+        onClose={() => setShowAuthModal(false)}
+        mode={authMode}
+        onSwitchMode={setAuthMode}
+      />
     </div>
   );
 };

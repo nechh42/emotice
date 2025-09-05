@@ -1,4 +1,30 @@
 {
+  "app": {
+    "name": "Emotice",
+    "tagline": "Duygularınızı takip edin, refahınızı artırın"
+  },
+  "auth": {
+    "sign_in": "Giriş Yap",
+    "sign_up": "Kayıt Ol",
+    "sign_out": "Çıkış Yap",
+    "email": "E-posta",
+    "password": "Şifre",
+    "full_name": "Ad Soyad",
+    "welcome_back": "Hoş Geldiniz!",
+    "create_account": "Hesap Oluştur",
+    "forgot_password": "Şifremi Unuttum",
+    "signin_subtitle": "Ruh hali takip yolculuğunuza devam edin",
+    "signup_subtitle": "Duygusal sağlığınızı iyileştirmeye başlayın",
+    "email_placeholder": "ornek@email.com",
+    "password_placeholder": "Şifrenizi girin",
+    "full_name_placeholder": "Adınız Soyadınız",
+    "signin_success": "Başarıyla giriş yapıldı",
+    "signup_success": "Hesap oluşturuldu! E-postanızı kontrol edin",
+    "account_created": "Hesap Oluşturuldu!",
+    "no_account": "Hesabınız yok mu? Kayıt olun",
+    "have_account": "Hesabınız var mı? Giriş yapın",
+    "terms_privacy": "Kayıt olarak Hizmet Şartları ve Gizlilik Politikasını kabul ediyorsunuz"
+  },
   "nav": {
     "dashboard": "Kontrol Paneli",
     "premium": "Premium",
@@ -27,14 +53,50 @@
     }
   },
   "dashboard": {
+    "welcome": "Hoş Geldin",
     "welcomeBack": "Tekrar Hoş Geldiniz",
+    "today_mood": "Bugünkü Ruh Halin",
     "howAreYouFeeling": "Bugün nasıl hissediyorsunuz?",
+    "add_mood": "Ruh Hali Ekle",
     "addMoodEntry": "Ruh hali ekle",
+    "mood_history": "Ruh Hali Geçmişi",
     "recentEntries": "Son Kayıtlar",
+    "analytics": "Analitik",
     "insights": "İçgörüler",
     "musicForMood": "Ruh Halinize Özel Müzik",
     "cosmicInsights": "Kozmik İçgörüler",
     "motivation": "Motivasyon"
+  },
+  "calendar": {
+    "mood_calendar": "Ruh Hali Takvimi",
+    "entries": "Kayıtlar",
+    "avg_intensity": "Ort. Yoğunluk",
+    "top_mood": "En Sık Ruh Hali",
+    "high_mood": "Yüksek (8-10)",
+    "good_mood": "İyi (6-7)",
+    "low_mood": "Düşük (3-5)",
+    "very_low": "Çok Düşük (1-2)",
+    "view_analytics": "Analizleri Görüntüle"
+  },
+  "chart": {
+    "mood_trends": "Ruh Hali Trendleri",
+    "week": "Hafta",
+    "month": "Ay", 
+    "year": "Yıl",
+    "intensity": "Yoğunluk",
+    "entries": "Kayıtlar",
+    "mood": "Ruh Hali",
+    "no_data": "Veri Bulunamadı",
+    "start_tracking": "Ruh halinizi takip etmeye başlayın",
+    "avg_intensity": "Ortalama Yoğunluk",
+    "total_entries": "Toplam Kayıt",
+    "trend": "Trend",
+    "consistency": "Tutarlılık"
+  },
+  "cta": {
+    "start_tracking": "Takibe Başla",
+    "learn_more": "Daha Fazla Öğren",
+    "get_started_free": "Ücretsiz Başla"
   },
   "premium": {
     "title": "Tam Potansiyelinizi Açığa Çıkarın",
