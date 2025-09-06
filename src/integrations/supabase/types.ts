@@ -14,68 +14,11 @@ export type Database = {
   }
   public: {
     Tables: {
-      ai_suggestions: {
-        Row: {
-          created_at: string | null
-          id: string
-          mood_entry_id: string | null
-          personalization_factors: Json | null
-          suggestion_text: string
-          suggestion_type: string
-          user_feedback: string | null
-          user_id: string
-          user_rating: number | null
-          was_helpful: boolean | null
-        }
-        Insert: {
-          created_at?: string | null
-          id?: string
-          mood_entry_id?: string | null
-          personalization_factors?: Json | null
-          suggestion_text: string
-          suggestion_type: string
-          user_feedback?: string | null
-          user_id: string
-          user_rating?: number | null
-          was_helpful?: boolean | null
-        }
-        Update: {
-          created_at?: string | null
-          id?: string
-          mood_entry_id?: string | null
-          personalization_factors?: Json | null
-          suggestion_text?: string
-          suggestion_type?: string
-          user_feedback?: string | null
-          user_id?: string
-          user_rating?: number | null
-          was_helpful?: boolean | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "ai_suggestions_mood_entry_id_fkey"
-            columns: ["mood_entry_id"]
-            isOneToOne: false
-            referencedRelation: "mood_entries"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "ai_suggestions_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       mood_entries: {
         Row: {
           activities: string[] | null
-          ai_insights: Json | null
-          ai_processing_status: string | null
-          ai_suggestion: string | null
-          created_at: string | null
-          date_part: string | null
+          created_at: string
+          date_part: string
           emoji: string
           id: string
           intensity: number
@@ -83,17 +26,14 @@ export type Database = {
           mood: string
           note: string | null
           tags: string[] | null
-          updated_at: string | null
+          updated_at: string
           user_id: string
           weather: string | null
         }
         Insert: {
           activities?: string[] | null
-          ai_insights?: Json | null
-          ai_processing_status?: string | null
-          ai_suggestion?: string | null
-          created_at?: string | null
-          date_part?: string | null
+          created_at?: string
+          date_part?: string
           emoji: string
           id?: string
           intensity: number
@@ -101,17 +41,14 @@ export type Database = {
           mood: string
           note?: string | null
           tags?: string[] | null
-          updated_at?: string | null
+          updated_at?: string
           user_id: string
           weather?: string | null
         }
         Update: {
           activities?: string[] | null
-          ai_insights?: Json | null
-          ai_processing_status?: string | null
-          ai_suggestion?: string | null
-          created_at?: string | null
-          date_part?: string | null
+          created_at?: string
+          date_part?: string
           emoji?: string
           id?: string
           intensity?: number
@@ -119,208 +56,62 @@ export type Database = {
           mood?: string
           note?: string | null
           tags?: string[] | null
-          updated_at?: string | null
+          updated_at?: string
           user_id?: string
           weather?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "mood_entries_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
-      mood_patterns: {
+      moods: {
         Row: {
-          confidence_score: number | null
           created_at: string | null
-          end_date: string
           id: string
-          pattern_data: Json
-          pattern_type: string
-          start_date: string
+          mood: Database["public"]["Enums"]["mood_type"]
+          note: string | null
           user_id: string
         }
         Insert: {
-          confidence_score?: number | null
           created_at?: string | null
-          end_date: string
           id?: string
-          pattern_data: Json
-          pattern_type: string
-          start_date: string
+          mood: Database["public"]["Enums"]["mood_type"]
+          note?: string | null
           user_id: string
         }
         Update: {
-          confidence_score?: number | null
           created_at?: string | null
-          end_date?: string
           id?: string
-          pattern_data?: Json
-          pattern_type?: string
-          start_date?: string
+          mood?: Database["public"]["Enums"]["mood_type"]
+          note?: string | null
           user_id?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "mood_patterns_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      profiles: {
-        Row: {
-          ai_credits_limit: number | null
-          ai_credits_used: number | null
-          avatar_url: string | null
-          created_at: string | null
-          email: string
-          full_name: string | null
-          id: string
-          is_premium: boolean | null
-          mood_entries_count: number | null
-          notification_preferences: Json | null
-          onboarding_completed: boolean | null
-          onboarding_data: Json | null
-          preferred_language: string | null
-          subscription_expires_at: string | null
-          subscription_plan: string | null
-          subscription_status: string | null
-          timezone: string | null
-          trial_started_at: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          ai_credits_limit?: number | null
-          ai_credits_used?: number | null
-          avatar_url?: string | null
-          created_at?: string | null
-          email: string
-          full_name?: string | null
-          id: string
-          is_premium?: boolean | null
-          mood_entries_count?: number | null
-          notification_preferences?: Json | null
-          onboarding_completed?: boolean | null
-          onboarding_data?: Json | null
-          preferred_language?: string | null
-          subscription_expires_at?: string | null
-          subscription_plan?: string | null
-          subscription_status?: string | null
-          timezone?: string | null
-          trial_started_at?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          ai_credits_limit?: number | null
-          ai_credits_used?: number | null
-          avatar_url?: string | null
-          created_at?: string | null
-          email?: string
-          full_name?: string | null
-          id?: string
-          is_premium?: boolean | null
-          mood_entries_count?: number | null
-          notification_preferences?: Json | null
-          onboarding_completed?: boolean | null
-          onboarding_data?: Json | null
-          preferred_language?: string | null
-          subscription_expires_at?: string | null
-          subscription_plan?: string | null
-          subscription_status?: string | null
-          timezone?: string | null
-          trial_started_at?: string | null
-          updated_at?: string | null
         }
         Relationships: []
       }
-      subscription_events: {
+      profiles: {
         Row: {
           created_at: string | null
-          error_message: string | null
+          display_name: string | null
+          email: string | null
           id: string
-          ls_customer_id: string | null
-          ls_event_type: string
-          ls_subscription_id: string | null
-          ls_webhook_data: Json
-          processed: boolean | null
-          processed_at: string | null
-          user_id: string | null
+          locale: string | null
+          plan_tier: string | null
         }
         Insert: {
           created_at?: string | null
-          error_message?: string | null
-          id?: string
-          ls_customer_id?: string | null
-          ls_event_type: string
-          ls_subscription_id?: string | null
-          ls_webhook_data: Json
-          processed?: boolean | null
-          processed_at?: string | null
-          user_id?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          error_message?: string | null
-          id?: string
-          ls_customer_id?: string | null
-          ls_event_type?: string
-          ls_subscription_id?: string | null
-          ls_webhook_data?: Json
-          processed?: boolean | null
-          processed_at?: string | null
-          user_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "subscription_events_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      user_activities: {
-        Row: {
-          activity_data: Json | null
-          activity_type: string
-          created_at: string | null
+          display_name?: string | null
+          email?: string | null
           id: string
-          points_earned: number | null
-          user_id: string
-        }
-        Insert: {
-          activity_data?: Json | null
-          activity_type: string
-          created_at?: string | null
-          id?: string
-          points_earned?: number | null
-          user_id: string
+          locale?: string | null
+          plan_tier?: string | null
         }
         Update: {
-          activity_data?: Json | null
-          activity_type?: string
           created_at?: string | null
+          display_name?: string | null
+          email?: string | null
           id?: string
-          points_earned?: number | null
-          user_id?: string
+          locale?: string | null
+          plan_tier?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "user_activities_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
     }
     Views: {
@@ -330,7 +121,15 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      mood_type:
+        | "happy"
+        | "sad"
+        | "angry"
+        | "calm"
+        | "anxious"
+        | "excited"
+        | "tired"
+        | "neutral"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -457,6 +256,17 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      mood_type: [
+        "happy",
+        "sad",
+        "angry",
+        "calm",
+        "anxious",
+        "excited",
+        "tired",
+        "neutral",
+      ],
+    },
   },
 } as const
