@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
@@ -45,46 +44,49 @@ export const useMoodData = () => {
 
   // Get today's mood
   const todaysMood = moodEntries.find(entry => {
-    const today = new Date().toISOString().split('T')[0];
-    return entry.date_part === today;
+    const entryDate = new Date(entry.date_part).toDateString();
+    const today = new Date().toDateString();
+    return entryDate === today;
   });
 
-  // Add mood entry mutation
+  // Add mood mutation
   const addMoodMutation = useMutation({
-    mutationFn: async (newMood: {
+    mutationFn: async (moodData: {
       mood: string;
       emoji: string;
       intensity: number;
       note?: string;
-      activities?: string[];
-      tags?: string[];
-      location?: string;
-      weather?: string;
     }) => {
       if (!user) throw new Error('User not authenticated');
 
-      const today = new Date().toISOString().split('T')[0];
-      
       const { data, error } = await supabase
         .from('mood_entries')
         .insert({
-          ...newMood,
           user_id: user.id,
-          date_part: today,
-          ai_processing_status: 'pending',
+          mood: moodData.mood,
+          emoji: moodData.emoji,
+          intensity: moodData.intensity,
+          note: moodData.note,
+          date_part: new Date().toISOString().split('T')[0],
         })
         .select()
         .single();
 
       if (error) throw error;
 
-      // Generate AI insights for the mood entry
+      // Trigger AI insight generation
       try {
         await supabase.functions.invoke('generate-mood-insights', {
-          body: { moodEntry: data }
+          body: { 
+            user_id: user.id,
+            mood_entry_id: data.id,
+            mood: moodData.mood,
+            intensity: moodData.intensity,
+            note: moodData.note 
+          }
         });
       } catch (aiError) {
-        console.log('AI insights generation failed, continuing without:', aiError);
+        console.warn('AI insight generation failed:', aiError);
       }
 
       return data;
@@ -92,26 +94,35 @@ export const useMoodData = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['moodEntries'] });
       toast({
-        title: "Mood recorded!",
-        description: "Your mood has been successfully saved. AI insights are being generated.",
+        title: "Mood logged! 🎉",
+        description: "Your mood has been successfully recorded.",
       });
     },
     onError: (error) => {
       toast({
-        title: "Error recording mood",
+        title: "Error logging mood",
         description: error.message,
         variant: "destructive",
       });
     },
   });
 
-  // Update mood entry mutation
+  // Update mood mutation
   const updateMoodMutation = useMutation({
-    mutationFn: async ({ id, ...updates }: Partial<MoodEntry> & { id: string }) => {
+    mutationFn: async ({
+      id,
+      updates,
+    }: {
+      id: string;
+      updates: Partial<MoodEntry>;
+    }) => {
+      if (!user) throw new Error('User not authenticated');
+
       const { data, error } = await supabase
         .from('mood_entries')
         .update(updates)
         .eq('id', id)
+        .eq('user_id', user.id)
         .select()
         .single();
 
@@ -122,7 +133,7 @@ export const useMoodData = () => {
       queryClient.invalidateQueries({ queryKey: ['moodEntries'] });
       toast({
         title: "Mood updated!",
-        description: "Your mood has been successfully updated.",
+        description: "Your mood entry has been updated.",
       });
     },
     onError: (error) => {
@@ -134,13 +145,16 @@ export const useMoodData = () => {
     },
   });
 
-  // Delete mood entry mutation
+  // Delete mood mutation
   const deleteMoodMutation = useMutation({
     mutationFn: async (id: string) => {
+      if (!user) throw new Error('User not authenticated');
+
       const { error } = await supabase
         .from('mood_entries')
         .delete()
-        .eq('id', id);
+        .eq('id', id)
+        .eq('user_id', user.id);
 
       if (error) throw error;
     },
