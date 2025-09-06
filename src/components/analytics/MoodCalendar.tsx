@@ -18,9 +18,12 @@ interface CalendarDay {
   isToday: boolean;
 }
 
-export const MoodCalendar: React.FC = () => {
+interface CalendarProps {
+  moodEntries: any[];
+}
+
+export const MoodCalendar: React.FC<CalendarProps> = ({ moodEntries }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const { moodEntries } = useMoodData();
   const { t } = useTranslation();
 
   // Create calendar grid
@@ -108,7 +111,7 @@ export const MoodCalendar: React.FC = () => {
   }, {} as Record<string, number>);
 
   const mostFrequentMood = Object.entries(moodCounts).reduce((max, [mood, count]) => 
-    count > (max.count || 0) ? { mood, count } : max, {} as { mood?: string; count?: number }
+    count > ((max as any).count || 0) ? { mood, count } : max, {} as { mood?: string; count?: number }
   );
 
   return (

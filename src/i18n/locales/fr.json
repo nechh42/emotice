@@ -1,6 +1,9 @@
 {
   "nav": {
     "dashboard": "Tableau de Bord",
+    "analytics": "Analytics",
+    "community": "Communauté", 
+    "mindfulness": "Pleine Conscience",
     "premium": "Premium",
     "profile": "Profil",
     "login": "Se Connecter",

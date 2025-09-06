@@ -181,14 +181,15 @@ export const Dashboard = () => {
                   <Plus className="mr-2 h-4 w-4" />
                   Add Mood Entry
                 </Button>
-                <Button variant="outline" className="w-full justify-start">
-                  <Calendar className="mr-2 h-4 w-4" />
-                  View Calendar
-                </Button>
-                <Button variant="outline" className="w-full justify-start">
-                  <BarChart3 className="mr-2 h-4 w-4" />
-                  View Analytics
-                </Button>
+              <Button variant="outline" className="w-full justify-start"
+                onClick={() => navigate('/analytics')}>
+                <BarChart3 className="mr-2 h-4 w-4" />
+                View Analytics
+              </Button>
+              <Button variant="outline" className="w-full justify-start">
+                <Calendar className="mr-2 h-4 w-4" />
+                View Calendar
+              </Button>
               </CardContent>
             </Card>
 

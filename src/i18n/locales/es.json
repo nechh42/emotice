@@ -1,6 +1,9 @@
 {
   "nav": {
     "dashboard": "Panel",
+    "analytics": "Analíticas", 
+    "community": "Comunidad",
+    "mindfulness": "Atención Plena",
     "premium": "Premium",
     "profile": "Perfil",
     "login": "Iniciar Sesión",

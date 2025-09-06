@@ -7,15 +7,16 @@ import { useMoodData } from '@/hooks/useMoodData';
 import { useTranslation } from 'react-i18next';
 
 interface ChartProps {
+  data: any[];
   variant?: 'line' | 'bar';
   period?: 'week' | 'month' | 'year';
 }
 
 export const MoodChart: React.FC<ChartProps> = ({ 
+  data = [],
   variant = 'line', 
   period = 'week' 
 }) => {
-  const { moodEntries } = useMoodData();
   const { t } = useTranslation();
 
   // Process mood data for charts
@@ -43,7 +44,7 @@ export const MoodChart: React.FC<ChartProps> = ({
     }
 
     // Filter entries by period
-    const filteredEntries = moodEntries.filter(entry => {
+    const filteredEntries = data.filter(entry => {
       const entryDate = new Date(entry.created_at);
       return entryDate >= startDate;
     });

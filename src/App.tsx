@@ -9,6 +9,9 @@ import { Landing } from "./pages/Landing";
 import { Dashboard } from "./pages/Dashboard";
 import { Premium } from "./pages/Premium";
 import { Profile } from "./pages/Profile";
+import { Analytics } from "./pages/Analytics";
+import { Community } from "./pages/Community";
+import { Mindfulness } from "./pages/Mindfulness";
 import { Terms } from "./pages/Terms";
 import { Privacy } from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
@@ -26,6 +29,9 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/community" element={<Community />} />
+            <Route path="/mindfulness" element={<Mindfulness />} />
             <Route path="/premium" element={<Premium />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/terms" element={<Terms />} />

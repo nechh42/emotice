@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { Heart, Menu, X, User, BarChart3, Crown, LogOut } from 'lucide-react';
+import { Heart, Menu, X, User, BarChart3, Crown, LogOut, Users, Brain } from 'lucide-react';
 import { AuthModal } from '@/components/auth/AuthModal';
 import { useAuth } from '@/contexts/AuthContext';
 import { LanguageSelector } from '@/components/LanguageSelector';
@@ -49,6 +49,27 @@ export const Navigation = () => {
               >
                 <BarChart3 className="h-4 w-4" />
                 <span>{t('nav.dashboard')}</span>
+              </Link>
+              <Link 
+                to="/analytics" 
+                className={`flex items-center space-x-1 transition-colors ${isActive('/analytics') ? 'text-primary font-semibold' : 'text-muted-foreground hover:text-primary'}`}
+              >
+                <BarChart3 className="h-4 w-4" />
+                <span>{t('nav.analytics')}</span>
+              </Link>
+              <Link 
+                to="/community" 
+                className={`flex items-center space-x-1 transition-colors ${isActive('/community') ? 'text-primary font-semibold' : 'text-muted-foreground hover:text-primary'}`}
+              >
+                <Users className="h-4 w-4" />
+                <span>{t('nav.community')}</span>
+              </Link>
+              <Link 
+                to="/mindfulness" 
+                className={`flex items-center space-x-1 transition-colors ${isActive('/mindfulness') ? 'text-primary font-semibold' : 'text-muted-foreground hover:text-primary'}`}
+              >
+                <Brain className="h-4 w-4" />
+                <span>{t('nav.mindfulness')}</span>
               </Link>
               <Link 
                 to="/premium" 
@@ -121,6 +142,30 @@ export const Navigation = () => {
                 >
                   <BarChart3 className="h-4 w-4" />
                   <span>{t('nav.dashboard')}</span>
+                </Link>
+                <Link 
+                  to="/analytics" 
+                  className={`flex items-center space-x-2 px-2 py-1 transition-colors ${isActive('/analytics') ? 'text-primary font-semibold' : 'text-muted-foreground'}`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <BarChart3 className="h-4 w-4" />
+                  <span>{t('nav.analytics')}</span>
+                </Link>
+                <Link 
+                  to="/community" 
+                  className={`flex items-center space-x-2 px-2 py-1 transition-colors ${isActive('/community') ? 'text-primary font-semibold' : 'text-muted-foreground'}`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Users className="h-4 w-4" />
+                  <span>{t('nav.community')}</span>
+                </Link>
+                <Link 
+                  to="/mindfulness" 
+                  className={`flex items-center space-x-2 px-2 py-1 transition-colors ${isActive('/mindfulness') ? 'text-primary font-semibold' : 'text-muted-foreground'}`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Brain className="h-4 w-4" />
+                  <span>{t('nav.mindfulness')}</span>
                 </Link>
                 <Link 
                   to="/premium" 

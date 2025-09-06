@@ -27,6 +27,9 @@
   },
   "nav": {
     "dashboard": "Kontrol Paneli",
+    "analytics": "Analitik",
+    "community": "Topluluk", 
+    "mindfulness": "Farkındalık",
     "premium": "Premium",
     "profile": "Profil",
     "login": "Giriş Yap",

@@ -1,6 +1,9 @@
 {
   "nav": {
     "dashboard": "Dashboard",
+    "analytics": "Analytics",
+    "community": "Gemeinschaft",
+    "mindfulness": "Achtsamkeit", 
     "premium": "Premium",
     "profile": "Profil",
     "login": "Anmelden",

@@ -27,6 +27,9 @@
   },
   "nav": {
     "dashboard": "Dashboard",
+    "analytics": "Analytics",
+    "community": "Community",
+    "mindfulness": "Mindfulness",
     "premium": "Premium",
     "profile": "Profile",
     "login": "Login",
