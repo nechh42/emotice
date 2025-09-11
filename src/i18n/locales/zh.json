@@ -1,15 +1,59 @@
 {
+  "app": {
+    "name": "Emotice",
+    "tagline": "跟踪你的情绪，改善你的健康"
+  },
+  "auth": {
+    "sign_in": "登录",
+    "sign_up": "注册",
+    "sign_out": "退出",
+    "email": "邮箱",
+    "password": "密码",
+    "full_name": "全名",
+    "welcome_back": "欢迎回来！",
+    "create_account": "创建账户"
+  },
   "nav": {
     "dashboard": "仪表板",
+    "analytics": "分析",
+    "community": "社区",
+    "mindfulness": "正念",
     "premium": "高级版",
     "profile": "档案",
     "login": "登录",
     "logout": "退出"
   },
+  "dashboard": {
+    "welcome": "欢迎",
+    "today_mood": "今天的情绪",
+    "add_mood": "添加情绪",
+    "mood_history": "情绪历史"
+  },
   "premium": {
-    "title": "释放您的全部潜力",
+    "title": "释放你的全部潜力",
     "monthly": "月度",
     "yearly": "年度",
     "free": "免费"
+  },
+  "mood": {
+    "veryHappy": "非常快乐",
+    "happy": "快乐",
+    "good": "好",
+    "neutral": "中性",
+    "sad": "悲伤",
+    "anxious": "焦虑",
+    "intensity": "强度",
+    "save": "保存"
+  },
+  "cta": {
+    "start_tracking": "开始跟踪",
+    "learn_more": "了解更多",
+    "get_started_free": "免费开始"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "发生错误",
+    "success": "成功",
+    "save": "保存"
   }
 }

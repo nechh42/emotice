@@ -1,15 +1,59 @@
 {
+  "app": {
+    "name": "Emotice",
+    "tagline": "Acompanhe suas emoções, melhore seu bem-estar"
+  },
+  "auth": {
+    "sign_in": "Entrar",
+    "sign_up": "Cadastrar",
+    "sign_out": "Sair",
+    "email": "Email",
+    "password": "Senha",
+    "full_name": "Nome Completo",
+    "welcome_back": "Bem-vindo de volta!",
+    "create_account": "Criar Conta"
+  },
   "nav": {
     "dashboard": "Painel",
+    "analytics": "Análises",
+    "community": "Comunidade",
+    "mindfulness": "Atenção Plena",
     "premium": "Premium",
     "profile": "Perfil",
     "login": "Entrar",
     "logout": "Sair"
+  },
+  "dashboard": {
+    "welcome": "Bem-vindo",
+    "today_mood": "Seu Humor de Hoje",
+    "add_mood": "Adicionar Humor",
+    "mood_history": "Histórico do Humor"
   },
   "premium": {
     "title": "Desbloqueie Seu Potencial Completo",
     "monthly": "Mensal",
     "yearly": "Anual",
     "free": "Grátis"
+  },
+  "mood": {
+    "veryHappy": "Muito Feliz",
+    "happy": "Feliz",
+    "good": "Bom",
+    "neutral": "Neutro",
+    "sad": "Triste",
+    "anxious": "Ansioso",
+    "intensity": "Intensidade",
+    "save": "Salvar"
+  },
+  "cta": {
+    "start_tracking": "Começar a Acompanhar",
+    "learn_more": "Saiba Mais",
+    "get_started_free": "Começar Grátis"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Ocorreu um erro",
+    "success": "Sucesso",
+    "save": "Salvar"
   }
 }

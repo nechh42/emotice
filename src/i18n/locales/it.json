@@ -1,15 +1,59 @@
 {
+  "app": {
+    "name": "Emotice",
+    "tagline": "Traccia le tue emozioni, migliora il tuo benessere"
+  },
+  "auth": {
+    "sign_in": "Accedi",
+    "sign_up": "Registrati",
+    "sign_out": "Esci",
+    "email": "Email",
+    "password": "Password",
+    "full_name": "Nome Completo",
+    "welcome_back": "Bentornato!",
+    "create_account": "Crea Account"
+  },
   "nav": {
     "dashboard": "Dashboard",
+    "analytics": "Analisi",
+    "community": "Comunità",
+    "mindfulness": "Mindfulness",
     "premium": "Premium",
     "profile": "Profilo",
     "login": "Accedi",
     "logout": "Esci"
+  },
+  "dashboard": {
+    "welcome": "Benvenuto",
+    "today_mood": "Il Tuo Umore di Oggi",
+    "add_mood": "Aggiungi Umore",
+    "mood_history": "Cronologia Umore"
   },
   "premium": {
     "title": "Sblocca il Tuo Pieno Potenziale",
     "monthly": "Mensile",
     "yearly": "Annuale",
     "free": "Gratuito"
+  },
+  "mood": {
+    "veryHappy": "Molto Felice",
+    "happy": "Felice",
+    "good": "Buono",
+    "neutral": "Neutro",
+    "sad": "Triste",
+    "anxious": "Ansioso",
+    "intensity": "Intensità",
+    "save": "Salva"
+  },
+  "cta": {
+    "start_tracking": "Inizia a Tracciare",
+    "learn_more": "Scopri di Più",
+    "get_started_free": "Inizia Gratis"
+  },
+  "common": {
+    "loading": "Caricamento...",
+    "error": "Si è verificato un errore",
+    "success": "Successo",
+    "save": "Salva"
   }
 }
