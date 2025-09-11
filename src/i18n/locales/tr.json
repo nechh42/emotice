@@ -36,10 +36,14 @@
     "logout": "Çıkış Yap"
   },
   "landing": {
-    "title": "Ruh Halinizi Takip Edin, İç Huzuru Keşfedin",
+    "title": "Duygularınızı Takip Edin, İç Huzurunuzu Keşfedin",
     "subtitle": "Emotice ile günlük ruh halinizi takip edin, AI destekli içgörüler alın ve kişisel gelişiminizi destekleyin.",
     "startJourney": "Yolculuğunuza Başlayın",
     "learnMore": "Daha Fazla Bilgi",
+    "whyChoose": {
+      "title": "Neden Emotice'i Seçmelisiniz?",
+      "subtitle": "Uygulamamız, duygusal refahınızı anlamanıza ve geliştirmenize yardımcı olmak için güzel tasarımı güçlü özelliklerle birleştiriyor."
+    },
     "features": {
       "moodTracking": {
         "title": "Akıllı Ruh Hali Takibi",
@@ -52,6 +56,10 @@
       "wellness": {
         "title": "Wellness Rehberi",
         "description": "Astroloji, müzik ve motivasyon ile desteklenen kişisel gelişim"
+      },
+      "security": {
+        "title": "Özel ve Güvenli",
+        "description": "Duygusal verileriniz şifrelenir ve tamamen gizli tutulur"
       }
     }
   },

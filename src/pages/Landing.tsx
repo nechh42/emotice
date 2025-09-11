@@ -25,23 +25,23 @@ export const Landing = () => {
   const features = [
     {
       icon: <Heart className="h-8 w-8 text-primary" />,
-      title: 'Track Your Emotions',
-      description: 'Log your daily moods with our intuitive emoji-based interface',
+      title: t('landing.features.moodTracking.title'),
+      description: t('landing.features.moodTracking.description'),
     },
     {
       icon: <BarChart3 className="h-8 w-8 text-secondary" />,
-      title: 'Visualize Patterns',
-      description: 'Understand your emotional patterns with beautiful charts and insights',
+      title: t('landing.features.aiInsights.title'),
+      description: t('landing.features.aiInsights.description'),
     },
     {
       icon: <Smartphone className="h-8 w-8 text-wellness" />,
-      title: 'Mobile Optimized',
-      description: 'Track your mood anywhere with our responsive mobile design',
+      title: t('landing.features.wellness.title'),
+      description: t('landing.features.wellness.description'),
     },
     {
       icon: <Shield className="h-8 w-8 text-calm" />,
-      title: 'Private & Secure',
-      description: 'Your emotional data is encrypted and completely private',
+      title: t('landing.features.security.title'),
+      description: t('landing.features.security.description'),
     },
   ];
 
@@ -73,11 +73,10 @@ export const Landing = () => {
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                  Track Your <span className="gradient-text">Emotions</span><br />
-                  Improve Your <span className="gradient-text">Wellness</span>
+                  {t('landing.title')}
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-lg">
-                  Join thousands of users who are improving their mental health by tracking their daily moods and emotions with Emotice.
+                  {t('landing.subtitle')}
                 </p>
               </div>
               
@@ -132,10 +131,10 @@ export const Landing = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Why Choose <span className="gradient-text">Emotice</span>?
+              {t('landing.whyChoose.title')}
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our app combines beautiful design with powerful features to help you understand and improve your emotional well-being.
+              {t('landing.whyChoose.subtitle')}
             </p>
           </div>
 
