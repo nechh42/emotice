@@ -24,8 +24,16 @@ const languages = [
 
 export const LanguageSelector: React.FC = () => {
   const { i18n } = useTranslation();
+  
+  // Initialize language from localStorage on component mount
+  React.useEffect(() => {
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage && savedLanguage !== i18n.language) {
+      i18n.changeLanguage(savedLanguage);
+    }
+  }, [i18n]);
 
-  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
+  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[1]; // Default to English
 
   const changeLanguage = (langCode: string) => {
     i18n.changeLanguage(langCode);

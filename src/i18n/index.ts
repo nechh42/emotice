@@ -30,7 +30,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'tr', // Default Turkish since this is for Turkish users
+    lng: 'en', // Default English for global users
     fallbackLng: 'en',
     
     interpolation: {
