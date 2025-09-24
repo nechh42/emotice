@@ -18,7 +18,7 @@ import {
   CheckCircle,
   AlertCircle 
 } from 'lucide-react'
-import { moodService, moodUtils } from '../../services/mood'
+import { moodService, moodUtils } from '../../services/mood.js'
 import { useAuth } from '../../hooks/useAuth'
 
 // Validation schema

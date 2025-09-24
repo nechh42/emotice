@@ -15,9 +15,9 @@ const MoodTracker = () => {
 
   // Mood seçenekleri (emoji + isim + renk)
   const moodOptions = [
-    { id: 1, emoji: '😭', name: 'Çok Üzgün', color: '#ef4444', value: 1 },
-    { id: 2, emoji: '😢', name: 'Üzgün', color: '#f97316', value: 2 },
-    { id: 3, emoji: '😐', name: 'Nötr', color: '#eab308', value: 3 },
+    { id: 1, emoji: '😭', name: 'Very Sad', color: '#ef4444', value: 1 },
+    { id: 2, emoji: '😢', name: 'Sad', color: '#f97316', value: 2 },
+    { id: 3, emoji: '😐', name: 'Neutral', color: '#eab308', value: 3 },
     { id: 4, emoji: '🙂', name: 'İyi', color: '#22c55e', value: 4 },
     { id: 5, emoji: '😊', name: 'Mutlu', color: '#06b6d4', value: 5 },
     { id: 6, emoji: '😄', name: 'Çok Mutlu', color: '#8b5cf6', value: 6 },

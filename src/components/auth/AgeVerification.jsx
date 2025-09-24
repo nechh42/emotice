@@ -159,7 +159,7 @@ const AgeVerification = ({ onVerificationComplete, onBack }) => {
               consent_type: consentType,
               consent_given: true,
               consent_version: 'v1.0.0',
-              ip_address: null, // We can add IP detection later
+              ip_address: browserInfo.ipData?.hashedIP || 'not-collected', // We can add IP detection later
               user_agent: browserInfo.userAgent
             })
         )

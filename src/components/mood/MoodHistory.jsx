@@ -191,7 +191,7 @@ const MoodHistory = () => {
       <div className="bg-white rounded-lg shadow-lg p-6">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
           <h1 className="text-3xl font-bold text-gray-800 mb-4 md:mb-0">
-            Ruh Hali Geçmişiniz
+            Mood History
           </h1>
           <div className="flex flex-wrap gap-3">
             <button

@@ -7,6 +7,8 @@ import AgeVerification from './AgeVerification'
 import SurveyComponent from '../forms/SurveyComponent'
 import RegisterForm from './RegisterForm'
 import LoginForm from './LoginForm'
+import { ErrorBoundary } from 'react-error-boundary'
+import ErrorFallback from '../common/ErrorBoundary'
 
 const AuthFlow = () => {
   const navigate = useNavigate()
