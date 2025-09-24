@@ -271,41 +271,41 @@ const MotivationBot = ({
         <div className="p-6">
           {currentMessage ? (
             <div className="space-y-4">
-              {/* Mesaj */}
-              <div className={`
-                bg-gradient-to-r ${getMessageStyle()} 
-                rounded-2xl p-6 text-white relative overflow-hidden
-              `}>
-                <div className="relative z-10">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl">
-                        {getCategoryIcon(currentMessage.category)}
-                      </span>
-                      <span className="text-sm font-medium opacity-90 capitalize">
-                        {currentMessage.category}
-                      </span>
-                    </div>
-                    
-                    {preferences.showTime && (
-                      <div className="flex items-center gap-1 text-sm opacity-75">
-                        <Clock className="w-4 h-4" />
-                        {new Date(currentMessage.metadata.timestamp).toLocaleTimeString('tr-TR', {
-                          hour: '2-digit',
-                          minute: '2-digit'
-                        })}
-                      </div>
-                    )}
+              {/* Mesaj Kartı */}
+              <div className={`bg-gradient-to-br ${getMessageStyle()} rounded-2xl p-8 text-white relative overflow-hidden`}>
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute top-4 right-4 text-6xl">
+                    {getCategoryIcon(currentMessage.category)}
                   </div>
-                  
-                  <p className="text-lg leading-relaxed font-medium">
-                    {currentMessage.message}
-                  </p>
                 </div>
                 
-                {/* Dekoratif elementler */}
-                <div className="absolute -top-6 -right-6 w-24 h-24 bg-white bg-opacity-10 rounded-full blur-xl" />
-                <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-white bg-opacity-5 rounded-full blur-lg" />
+                {/* Mesaj İçeriği */}
+                <div className="relative z-10">
+                  {preferences.showTime && (
+                    <div className="flex items-center gap-2 text-white text-opacity-80 mb-3">
+                      <Clock className="w-4 h-4" />
+                      <span className="text-sm">
+                        {new Date().toLocaleTimeString('tr-TR', { 
+                          hour: '2-digit', 
+                          minute: '2-digit' 
+                        })}
+                      </span>
+                    </div>
+                  )}
+                  
+                  <p className="text-xl md:text-2xl font-medium leading-relaxed">
+                    {currentMessage.message}
+                  </p>
+                  
+                  {currentMessage.category && (
+                    <div className="mt-4 flex items-center gap-2">
+                      <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">
+                        {getCategoryIcon(currentMessage.category)} {currentMessage.category}
+                      </span>
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* Kontroller */}
@@ -314,8 +314,7 @@ const MotivationBot = ({
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleFeedback('like')}
-                      className="flex items-center gap-2 px-3 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors"
-                      title="Beğendim"
+                      className="flex items-center gap-2 px-4 py-2 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
                     >
                       <ThumbsUp className="w-4 h-4" />
                       <span className="text-sm">Beğendim</span>
@@ -323,8 +322,7 @@ const MotivationBot = ({
                     
                     <button
                       onClick={() => handleFeedback('dislike')}
-                      className="flex items-center gap-2 px-3 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors"
-                      title="Beğenmedim"
+                      className="flex items-center gap-2 px-4 py-2 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
                     >
                       <ThumbsDown className="w-4 h-4" />
                       <span className="text-sm">Değiştir</span>
@@ -382,4 +380,94 @@ const MotivationBot = ({
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-white rounded-lg p-4 text-center">
                 <div className="text-2xl font-bold text-purple-600">{userStats.totalMessages}</div>
-                <div className="text-sm text-gray-600"></div>
+                <div className="text-sm text-gray-600">Toplam Mesaj</div>
+              </div>
+              <div className="bg-white rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold text-green-600">{userStats.likedMessages}</div>
+                <div className="text-sm text-gray-600">Beğenilen</div>
+              </div>
+              <div className="bg-white rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold text-blue-600">{userStats.streak}</div>
+                <div className="text-sm text-gray-600">Günlük Seri</div>
+              </div>
+              <div className="bg-white rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold text-orange-600">{userStats.favoriteCategory}</div>
+                <div className="text-sm text-gray-600">Favori Kategori</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Ayarlar Panel */}
+        {showSettings && (
+          <div className="border-t bg-gray-50 p-6">
+            <h3 className="font-semibold text-gray-800 mb-4">⚙️ Ayarlar</h3>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Ruh Hali
+                </label>
+                <select
+                  value={preferences.mood}
+                  onChange={(e) => setPreferences(prev => ({ ...prev, mood: e.target.value }))}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                >
+                  <option value="motivated">Motivasyonlu</option>
+                  <option value="relaxed">Sakin</option>
+                  <option value="focused">Odaklanmış</option>
+                  <option value="anxious">Endişeli</option>
+                  <option value="grateful">Minnettear</option>
+                </select>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Mesaj Uzunluğu
+                </label>
+                <select
+                  value={preferences.length}
+                  onChange={(e) => setPreferences(prev => ({ ...prev, length: e.target.value }))}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                >
+                  <option value="short">Kısa</option>
+                  <option value="medium">Orta</option>
+                  <option value="long">Uzun</option>
+                </select>
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-gray-700">Ses Bildirimı</span>
+                <button
+                  onClick={() => setPreferences(prev => ({ ...prev, soundEnabled: !prev.soundEnabled }))}
+                  className={`p-2 rounded-lg transition-colors ${
+                    preferences.soundEnabled 
+                      ? 'text-blue-600 bg-blue-50' 
+                      : 'text-gray-400 bg-gray-50'
+                  }`}
+                >
+                  {preferences.soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+                </button>
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-gray-700">Saat Göster</span>
+                <button
+                  onClick={() => setPreferences(prev => ({ ...prev, showTime: !prev.showTime }))}
+                  className={`w-12 h-6 rounded-full relative transition-colors ${
+                    preferences.showTime ? 'bg-purple-600' : 'bg-gray-300'
+                  }`}
+                >
+                  <div className={`w-5 h-5 bg-white rounded-full absolute top-0.5 transition-transform ${
+                    preferences.showTime ? 'translate-x-6' : 'translate-x-0.5'
+                  }`} />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default MotivationBot;
