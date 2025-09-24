@@ -236,4 +236,4 @@ export const realtime = {
   }
 }
 
-export default supabase
+export { supabase }

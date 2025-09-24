@@ -1,5 +1,4 @@
 ﻿// src/App.jsx
-// EMOTICE - Mevcut kod + TALİMAT #13, #14, #15 Legal Compliance entegrasyonu
 
 import React, { useState, useEffect } from 'react'
 import { supabase } from './lib/supabase'
@@ -7,8 +6,8 @@ import './index.css'
 
 // Legal Components - Yeni eklenen
 import ConsentModal from './components/legal/ConsentModal'
-import SurveyComponent from './components/forms/SurveyComponent'
-import { consentService } from './services/consent/consentService'
+import SurveyComponent from './components/forms/SurveyComponent';
+import { consentService } from './services/consent/consentService';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('welcome')

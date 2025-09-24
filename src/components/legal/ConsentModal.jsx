@@ -452,4 +452,13 @@ const ConsentModal = ({ isOpen, onClose, onConsent, userAge = null }) => {
                 >
                   Complete Registration
                 </button>
-              )}
+             )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ConsentModal;
