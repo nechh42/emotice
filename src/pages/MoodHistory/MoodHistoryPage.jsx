@@ -1,6 +1,6 @@
-// src/pages/MoodHistoryPage.jsx
-import React from 'react';
-import MoodHistory from '../components/mood/MoodHistory';
+﻿// src/pages/MoodHistory/MoodHistoryPage.jsx
+import React from 'react'
+import MoodHistory from '../../components/mood/MoodHistory'
 
 const MoodHistoryPage = () => {
   return (
@@ -9,7 +9,7 @@ const MoodHistoryPage = () => {
         <MoodHistory />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MoodHistoryPage;
+export default MoodHistoryPage

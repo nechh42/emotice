@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { 
   Heart, 
   BarChart3, 
@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { toast } from 'react-toastify';
-import MotivationBot from '../motivation/MotivationBot';
+import MotivationBot from "../../components/motivation/MotivationBot";
 
 const Dashboard = () => {
   const { user, profile } = useAuth();
@@ -28,7 +28,7 @@ const Dashboard = () => {
     recentMoods: []
   });
 
-  // Simulated data - gerçek API'dan gelecek
+  // Simulated data - gerÃ§ek API'dan gelecek
   useEffect(() => {
     const loadDashboardData = async () => {
       setIsLoading(true);
@@ -37,20 +37,20 @@ const Dashboard = () => {
         await new Promise(resolve => setTimeout(resolve, 1000));
         
         setDashboardStats({
-          todayMood: null, // Bugün henüz ruh hali girilmemiş
+          todayMood: null, // BugÃ¼n henÃ¼z ruh hali girilmemiÅŸ
           weeklyAverage: 7.2,
           activeStreak: 5,
           monthlyGoal: { current: 23, target: 30 },
           recentMoods: [
-            { date: '2024-12-23', mood: 8, emoji: '😊' },
-            { date: '2024-12-22', mood: 6, emoji: '😐' },
-            { date: '2024-12-21', mood: 9, emoji: '😄' },
-            { date: '2024-12-20', mood: 7, emoji: '🙂' },
-            { date: '2024-12-19', mood: 5, emoji: '😕' }
+            { date: '2024-12-23', mood: 8, emoji: 'ğŸ˜Š' },
+            { date: '2024-12-22', mood: 6, emoji: 'ğŸ˜' },
+            { date: '2024-12-21', mood: 9, emoji: 'ğŸ˜„' },
+            { date: '2024-12-20', mood: 7, emoji: 'ğŸ™‚' },
+            { date: '2024-12-19', mood: 5, emoji: 'ğŸ˜•' }
           ]
         });
       } catch (error) {
-        toast.error('Dashboard verileri yüklenirken hata oluştu');
+        toast.error('Dashboard verileri yÃ¼klenirken hata oluÅŸtu');
       } finally {
         setIsLoading(false);
       }
@@ -69,28 +69,28 @@ const Dashboard = () => {
 
   const getGreeting = () => {
     const hour = new Date().getHours();
-    const name = profile?.full_name || user?.email?.split('@')[0] || 'Kullanıcı';
+    const name = profile?.full_name || user?.email?.split('@')[0] || 'KullanÄ±cÄ±';
     
-    if (hour < 12) return `Günaydın ${name}! 🌅`;
-    if (hour < 18) return `İyi günler ${name}! ☀️`;
-    return `İyi akşamlar ${name}! 🌙`;
+    if (hour < 12) return `GÃ¼naydÄ±n ${name}! ğŸŒ…`;
+    if (hour < 18) return `Ä°yi gÃ¼nler ${name}! â˜€ï¸`;
+    return `Ä°yi akÅŸamlar ${name}! ğŸŒ™`;
   };
 
   const handleQuickMoodEntry = (mood) => {
-    // Hızlı ruh hali girişi
+    // HÄ±zlÄ± ruh hali giriÅŸi
     setDashboardStats(prev => ({
       ...prev,
       todayMood: { mood, emoji: getMoodEmoji(mood) }
     }));
-    toast.success('Ruh haliniz kaydedildi! 🎉');
+    toast.success('Ruh haliniz kaydedildi! ğŸ‰');
   };
 
   const getMoodEmoji = (mood) => {
-    if (mood >= 9) return '😄';
-    if (mood >= 7) return '😊';
-    if (mood >= 5) return '😐';
-    if (mood >= 3) return '😕';
-    return '😢';
+    if (mood >= 9) return 'ğŸ˜„';
+    if (mood >= 7) return 'ğŸ˜Š';
+    if (mood >= 5) return 'ğŸ˜';
+    if (mood >= 3) return 'ğŸ˜•';
+    return 'ğŸ˜¢';
   };
 
   if (isLoading) {
@@ -98,7 +98,7 @@ const Dashboard = () => {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-purple-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Dashboard yükleniyor...</p>
+          <p className="text-gray-600">Dashboard yÃ¼kleniyor...</p>
         </div>
       </div>
     );
@@ -113,13 +113,13 @@ const Dashboard = () => {
             {getGreeting()}
           </h1>
           <p className="text-gray-600">
-            Bugün nasıl hissediyorsun? Kendine iyi bak ve hedeflerine odaklan.
+            BugÃ¼n nasÄ±l hissediyorsun? Kendine iyi bak ve hedeflerine odaklan.
           </p>
         </div>
 
-        {/* Üst İstatistik Kartları */}
+        {/* Ãœst Ä°statistik KartlarÄ± */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {/* Bugünkü Ruh Hali */}
+          {/* BugÃ¼nkÃ¼ Ruh Hali */}
           <div className="bg-white rounded-2xl shadow-lg p-6 border border-purple-100">
             <div className="flex items-center justify-between mb-4">
               <Heart className="w-8 h-8 text-purple-600" />
@@ -130,18 +130,18 @@ const Dashboard = () => {
               )}
             </div>
             <h3 className="text-lg font-semibold text-gray-800 mb-2">
-              Bugünkü Ruh Halim
+              BugÃ¼nkÃ¼ Ruh Halim
             </h3>
             {dashboardStats.todayMood ? (
               <div>
                 <p className="text-2xl font-bold text-purple-600">
                   {dashboardStats.todayMood.mood}/10
                 </p>
-                <p className="text-sm text-green-600">Kaydedildi ✓</p>
+                <p className="text-sm text-green-600">Kaydedildi âœ“</p>
               </div>
             ) : (
               <div>
-                <p className="text-sm text-gray-500 mb-3">Henüz girilmedi</p>
+                <p className="text-sm text-gray-500 mb-3">HenÃ¼z girilmedi</p>
                 <div className="flex space-x-1">
                   {[1, 2, 3, 4, 5].map(mood => (
                     <button
@@ -157,48 +157,48 @@ const Dashboard = () => {
             )}
           </div>
 
-          {/* Haftalık Ortalama */}
+          {/* HaftalÄ±k Ortalama */}
           <div className="bg-white rounded-2xl shadow-lg p-6 border border-blue-100">
             <div className="flex items-center justify-between mb-4">
               <BarChart3 className="w-8 h-8 text-blue-600" />
               {getTrendIcon(dashboardStats.weeklyAverage, 6.8)}
             </div>
             <h3 className="text-lg font-semibold text-gray-800 mb-2">
-              Haftalık Ortalama
+              HaftalÄ±k Ortalama
             </h3>
             <div>
               <p className="text-2xl font-bold text-blue-600">
                 {dashboardStats.weeklyAverage}/10
               </p>
-              <p className="text-sm text-gray-600">Son 7 gün</p>
+              <p className="text-sm text-gray-600">Son 7 gÃ¼n</p>
             </div>
           </div>
 
-          {/* Aktif Gün Serisi */}
+          {/* Aktif GÃ¼n Serisi */}
           <div className="bg-white rounded-2xl shadow-lg p-6 border border-green-100">
             <div className="flex items-center justify-between mb-4">
               <Zap className="w-8 h-8 text-green-600" />
               <Calendar className="w-6 h-6 text-gray-400" />
             </div>
             <h3 className="text-lg font-semibold text-gray-800 mb-2">
-              Aktif Gün Serisi
+              Aktif GÃ¼n Serisi
             </h3>
             <div>
               <p className="text-2xl font-bold text-green-600">
-                {dashboardStats.activeStreak} gün
+                {dashboardStats.activeStreak} gÃ¼n
               </p>
-              <p className="text-sm text-gray-600">Devam ediyor 🔥</p>
+              <p className="text-sm text-gray-600">Devam ediyor ğŸ”¥</p>
             </div>
           </div>
 
-          {/* Aylık Hedef */}
+          {/* AylÄ±k Hedef */}
           <div className="bg-white rounded-2xl shadow-lg p-6 border border-orange-100">
             <div className="flex items-center justify-between mb-4">
               <Target className="w-8 h-8 text-orange-600" />
               <Award className="w-6 h-6 text-gray-400" />
             </div>
             <h3 className="text-lg font-semibold text-gray-800 mb-2">
-              Aylık Hedef
+              AylÄ±k Hedef
             </h3>
             <div>
               <p className="text-2xl font-bold text-orange-600">
@@ -216,15 +216,15 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Ana İçerik Grid */}
+        {/* Ana Ä°Ã§erik Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Sol Kısım - Motivasyon Botu ve Hızlı Aksiyonlar */}
+          {/* Sol KÄ±sÄ±m - Motivasyon Botu ve HÄ±zlÄ± Aksiyonlar */}
           <div className="lg:col-span-2 space-y-6">
             {/* Motivasyon Botu Widget */}
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="p-6 border-b border-gray-100">
                 <h2 className="text-xl font-semibold text-gray-800">
-                  Bugünün Motivasyonu
+                  BugÃ¼nÃ¼n Motivasyonu
                 </h2>
               </div>
               <div className="p-6">
@@ -232,40 +232,40 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* Hızlı Aksiyonlar */}
+            {/* HÄ±zlÄ± Aksiyonlar */}
             <div className="bg-white rounded-2xl shadow-lg p-6">
               <h2 className="text-xl font-semibold text-gray-800 mb-6">
-                Hızlı Aksiyonlar
+                HÄ±zlÄ± Aksiyonlar
               </h2>
               <div className="grid grid-cols-2 gap-4">
                 <button className="p-4 bg-purple-50 rounded-xl hover:bg-purple-100 transition-colors text-left">
                   <Heart className="w-6 h-6 text-purple-600 mb-2" />
                   <h3 className="font-medium text-gray-800">Ruh Hali Gir</h3>
-                  <p className="text-sm text-gray-600">Bugünkü hislerini kaydet</p>
+                  <p className="text-sm text-gray-600">BugÃ¼nkÃ¼ hislerini kaydet</p>
                 </button>
                 
                 <button className="p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors text-left">
                   <BarChart3 className="w-6 h-6 text-blue-600 mb-2" />
-                  <h3 className="font-medium text-gray-800">Geçmişi Gör</h3>
-                  <p className="text-sm text-gray-600">Ruh hali geçmişin</p>
+                  <h3 className="font-medium text-gray-800">GeÃ§miÅŸi GÃ¶r</h3>
+                  <p className="text-sm text-gray-600">Ruh hali geÃ§miÅŸin</p>
                 </button>
                 
                 <button className="p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors text-left">
                   <Target className="w-6 h-6 text-green-600 mb-2" />
                   <h3 className="font-medium text-gray-800">Hedef Belirle</h3>
-                  <p className="text-sm text-gray-600">Yeni hedefler oluştur</p>
+                  <p className="text-sm text-gray-600">Yeni hedefler oluÅŸtur</p>
                 </button>
                 
                 <button className="p-4 bg-orange-50 rounded-xl hover:bg-orange-100 transition-colors text-left">
                   <Settings className="w-6 h-6 text-orange-600 mb-2" />
                   <h3 className="font-medium text-gray-800">Ayarlar</h3>
-                  <p className="text-sm text-gray-600">Profili düzenle</p>
+                  <p className="text-sm text-gray-600">Profili dÃ¼zenle</p>
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Sağ Kısım - Son Aktiviteler ve İpuçları */}
+          {/* SaÄŸ KÄ±sÄ±m - Son Aktiviteler ve Ä°puÃ§larÄ± */}
           <div className="space-y-6">
             {/* Son Ruh Halleri */}
             <div className="bg-white rounded-2xl shadow-lg p-6">
@@ -297,15 +297,15 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* Günün İpucu */}
+            {/* GÃ¼nÃ¼n Ä°pucu */}
             <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl shadow-lg p-6 text-white">
-              <h2 className="text-xl font-semibold mb-4">💡 Günün İpucu</h2>
+              <h2 className="text-xl font-semibold mb-4">ğŸ’¡ GÃ¼nÃ¼n Ä°pucu</h2>
               <p className="text-purple-100 mb-4">
-                Ruh halinizi düzenli olarak takip etmek, duygusal sağlığınız hakkında değerli bilgiler sunar. 
-                Her gün sadece 2 dakika ayırın!
+                Ruh halinizi dÃ¼zenli olarak takip etmek, duygusal saÄŸlÄ±ÄŸÄ±nÄ±z hakkÄ±nda deÄŸerli bilgiler sunar. 
+                Her gÃ¼n sadece 2 dakika ayÄ±rÄ±n!
               </p>
               <button className="bg-white text-purple-600 px-4 py-2 rounded-lg font-medium hover:bg-purple-50 transition-colors">
-                Daha Fazla İpucu
+                Daha Fazla Ä°pucu
               </button>
             </div>
 
@@ -320,19 +320,19 @@ const Dashboard = () => {
               <div className="space-y-3">
                 <div className="p-3 bg-blue-50 rounded-lg border-l-4 border-blue-400">
                   <p className="text-sm font-medium text-blue-800">
-                    Haftalık rapor hazır! 📊
+                    HaftalÄ±k rapor hazÄ±r! ğŸ“Š
                   </p>
                   <p className="text-xs text-blue-600 mt-1">
-                    2 saat önce
+                    2 saat Ã¶nce
                   </p>
                 </div>
                 
                 <div className="p-3 bg-green-50 rounded-lg border-l-4 border-green-400">
                   <p className="text-sm font-medium text-green-800">
-                    5 günlük seri tamamlandı! 🎉
+                    5 gÃ¼nlÃ¼k seri tamamlandÄ±! ğŸ‰
                   </p>
                   <p className="text-xs text-green-600 mt-1">
-                    1 gün önce
+                    1 gÃ¼n Ã¶nce
                   </p>
                 </div>
               </div>
@@ -345,3 +345,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+

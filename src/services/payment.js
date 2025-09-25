@@ -1,6 +1,6 @@
-// EMOTICE - Shopier Payment Service
+﻿// EMOTICE - Shopier Payment Service
 import axios from 'axios'
-import { supabase } from './supabase'
+import { supabase } from '../lib/supabase'
 
 const SHOPIER_API_KEY = import.meta.env.VITE_SHOPIER_API_KEY
 const SHOPIER_STORE_ID = import.meta.env.VITE_SHOPIER_STORE_ID
@@ -20,13 +20,13 @@ export const paymentService = {
       const plans = {
         premium_monthly: {
           price: 29.99,
-          name: 'Emotice Premium - Aylık',
-          description: 'Premium özellikler, sınırsız mood tracking, fal, astroloji ve daha fazlası'
+          name: 'Emotice Premium - AylÄ±k',
+          description: 'Premium Ã¶zellikler, sÄ±nÄ±rsÄ±z mood tracking, fal, astroloji ve daha fazlasÄ±'
         },
         premium_yearly: {
           price: 299.99,
-          name: 'Emotice Premium - Yıllık',
-          description: 'Premium özellikler, sınırsız mood tracking, fal, astroloji ve daha fazlası (2 ay bedava)'
+          name: 'Emotice Premium - YÄ±llÄ±k',
+          description: 'Premium Ã¶zellikler, sÄ±nÄ±rsÄ±z mood tracking, fal, astroloji ve daha fazlasÄ± (2 ay bedava)'
         }
       }
 

@@ -27,7 +27,7 @@ const Sidebar = ({ isOpen, onClose }) => {
       )}
 
       {/* Sidebar */}
-      <div className={\ixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform md:relative md:translate-x-0 \\}>
+      <div className="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform md:relative md:translate-x-0">
         <div className="flex items-center justify-between h-16 px-6 border-b">
           <span className="text-lg font-semibold">Menu</span>
           <button onClick={onClose} className="p-2 rounded-md text-gray-600 hover:text-gray-900 md:hidden">
@@ -41,7 +41,7 @@ const Sidebar = ({ isOpen, onClose }) => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={\lex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors \\}
+                className="flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors text-gray-700 hover:bg-gray-100"
                 onClick={onClose}
               >
                 <item.icon className="mr-3 h-5 w-5" />

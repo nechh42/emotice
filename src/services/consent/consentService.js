@@ -1,8 +1,8 @@
-// src/services/consent/consentService.js
+﻿// src/services/consent/consentService.js
 // EMOTICE Consent Service - Legal compliance management
-// TALİMAT #13, #14, #15 compliance
+// TALÄ°MAT #13, #14, #15 compliance
 
-import { supabase } from '../supabase'
+import { supabase } from '../../lib/supabase'
 
 export class ConsentService {
   // Store user consents in database
@@ -177,7 +177,7 @@ export class ConsentService {
         return { needsConsent: true, reason: 'Missing required consents' }
       }
 
-      // Check if survey is completed (TALİMAT #14)
+      // Check if survey is completed (TALÄ°MAT #14)
       if (!consent.consents?.survey_completion_agreement?.completed) {
         return { needsConsent: true, reason: 'Survey not completed' }
       }
@@ -310,7 +310,7 @@ export class ConsentService {
     }
   }
 
-  // Validate age (TALİMAT #15)
+  // Validate age (TALÄ°MAT #15)
   validateAge(birthDate) {
     const today = new Date()
     const birth = new Date(birthDate)
