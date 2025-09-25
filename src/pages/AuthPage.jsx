@@ -139,6 +139,18 @@ const AuthPage = () => {
           <div className="flex-1 border-t border-gray-300"></div>
           <span className="px-4 text-sm text-gray-500">veya</span>
           <div className="flex-1 border-t border-gray-300"></div>
+        </div>        <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <p className="text-sm text-yellow-800 mb-2">Test için:</p>
+          <button
+            type="button"
+            onClick={() => {
+              localStorage.setItem('emotice_demo_user', 'true');
+              window.location.reload();
+            }}
+            className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+          >
+            Demo Giriş (Test)
+          </button>
         </div>
 
         <button className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors">
@@ -150,3 +162,6 @@ const AuthPage = () => {
 }
 
 export default AuthPage
+
+
+

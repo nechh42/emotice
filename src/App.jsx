@@ -5,7 +5,9 @@ import { Home, Heart, BarChart3, User } from 'lucide-react'
 import MoodTracker from './components/mood/MoodTracker'
 import { useAuth } from './hooks/useAuth'
 import AuthPage from './pages/AuthPage'
-import Dashboard from './pages/Dashboard/Dashboard'
+import Dashboard from './components/dashboard/Dashboard'
+import MoodHistory from './components/mood/MoodHistorySimple'
+import Profile from './components/profile/Profile'
 
 function App() {
   const [connected, setConnected] = useState(false)
@@ -79,18 +81,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/mood" element={<MoodTracker />} />
-            <Route path="/history" element={
-              <div className="text-center">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">Geçmiş</h2>
-                <p className="text-gray-600">Mood history burada olacak</p>
-              </div>
-            } />
-            <Route path="/profile" element={
-              <div className="text-center">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">Profil</h2>
-                <p className="text-gray-600">User profile burada olacak</p>
-              </div>
-            } />
+            <Route path="/history" element={<MoodHistory />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
       </div>
@@ -99,4 +91,8 @@ function App() {
 }
 
 export default App
+
+
+
+
 
