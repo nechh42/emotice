@@ -1,5 +1,5 @@
 ﻿import React, { useState } from "react"
-import { useAuth } from "../hooks/useAuth"
+import { useAuth } from "../contexts/AuthContext"
 import { Mail, Lock, User, Eye, EyeOff } from "lucide-react"
 
 const AuthPage = () => {
@@ -48,17 +48,13 @@ const AuthPage = () => {
           <div className="flex bg-gray-100 rounded-lg p-1">
             <button
               onClick={() => setIsLogin(true)}
-              className={`flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors ${
-                isLogin ? "bg-white text-purple-600 shadow-sm" : "text-gray-600"
-              }`}
+              className="flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors bg-white text-purple-600 shadow-sm"
             >
               Giriş Yap
             </button>
             <button
               onClick={() => setIsLogin(false)}
-              className={`flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors ${
-                !isLogin ? "bg-white text-purple-600 shadow-sm" : "text-gray-600"
-              }`}
+              className="flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors text-gray-600"
             >
               Kayıt Ol
             </button>
@@ -66,23 +62,6 @@ const AuthPage = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {!isLogin && (
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Ad Soyad</label>
-              <div className="relative">
-                <User className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  placeholder="Adınızı girin"
-                  required={!isLogin}
-                />
-              </div>
-            </div>
-          )}
-
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
             <div className="relative">
@@ -103,20 +82,13 @@ const AuthPage = () => {
             <div className="relative">
               <Lock className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
               <input
-                type={showPassword ? "text" : "password"}
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder=""
+                placeholder="Şifrenizi girin"
                 required
               />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-3 text-gray-400"
-              >
-                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-              </button>
             </div>
           </div>
 
@@ -131,15 +103,11 @@ const AuthPage = () => {
             disabled={loading}
             className="w-full bg-purple-600 hover:bg-purple-700 disabled:opacity-50 text-white font-semibold py-3 px-4 rounded-lg transition-colors"
           >
-            {loading ? "Yükleniyor..." : isLogin ? "Giriş Yap" : "Kayıt Ol"}
+            {loading ? "Yükleniyor..." : "Giriş Yap"}
           </button>
         </form>
 
-        <div className="mt-6 flex items-center">
-          <div className="flex-1 border-t border-gray-300"></div>
-          <span className="px-4 text-sm text-gray-500">veya</span>
-          <div className="flex-1 border-t border-gray-300"></div>
-        </div>        <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+        <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
           <p className="text-sm text-yellow-800 mb-2">Test için:</p>
           <button
             type="button"
@@ -152,16 +120,9 @@ const AuthPage = () => {
             Demo Giriş (Test)
           </button>
         </div>
-
-        <button className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors">
-          Google ile {isLogin ? "Giriş Yap" : "Kayıt Ol"}
-        </button>
       </div>
     </div>
   )
 }
 
 export default AuthPage
-
-
-
