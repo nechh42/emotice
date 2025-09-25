@@ -54,15 +54,15 @@ const Dashboard = () => {
       <div className="bg-white rounded-lg shadow-sm p-6">
         <h2 className="text-xl font-bold mb-4">Hizli Islemler</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <button className="p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
+          <button onClick={() => window.location.href = "/mood"} className="p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
             <Heart className="w-6 h-6 text-purple-600 mb-2" />
             <p className="font-medium">Ruh Hali Kaydet</p>
           </button>
-          <button className="p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+          <button onClick={() => window.location.href = "/history"} className="p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
             <BarChart3 className="w-6 h-6 text-blue-600 mb-2" />
             <p className="font-medium">Istatistikleri Gor</p>
           </button>
-          <button className="p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
+          <button onClick={() => window.location.href = "/history"} className="p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
             <Calendar className="w-6 h-6 text-green-600 mb-2" />
             <p className="font-medium">Gecmis Kayitlar</p>
           </button>
@@ -73,3 +73,4 @@ const Dashboard = () => {
 }
 
 export default Dashboard
+
