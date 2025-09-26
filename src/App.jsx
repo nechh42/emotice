@@ -1,13 +1,14 @@
 ﻿import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { supabase } from './lib/supabase'
-import { Home, Heart, BarChart3, User } from 'lucide-react'
+import { Home, Heart, BarChart3, User, Crown } from 'lucide-react'
 import MoodTracker from './components/mood/MoodTracker'
 import { useAuth } from './hooks/useAuth'
 import AuthPage from './pages/AuthPage'
 import Dashboard from './components/dashboard/Dashboard'
 import MoodHistory from './components/mood/MoodHistorySimple'
 import Profile from './components/profile/Profile'
+import PremiumPage from './pages/PremiumPage'
 
 function App() {
   const [connected, setConnected] = useState(false)
@@ -72,6 +73,10 @@ function App() {
                   <User className="w-5 h-5" />
                   Profil
                 </Link>
+                <Link to="/premium" className="flex items-center gap-2 text-gray-700 hover:text-purple-600">
+                  <Crown className="w-5 h-5" />
+                  Premium
+                  </Link>
               </div>
             </div>
           </div>
@@ -83,6 +88,7 @@ function App() {
             <Route path="/mood" element={<MoodTracker />} />
             <Route path="/history" element={<MoodHistory />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/premium" element={<PremiumPage />} />
           </Routes>
         </div>
       </div>

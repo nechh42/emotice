@@ -1,6 +1,7 @@
-﻿import React, { useState } from "react"
+﻿import React, { useState, useEffect } from "react"
 import { useAuth } from "../contexts/AuthContext"
 import { Mail, Lock, User, Eye, EyeOff } from "lucide-react"
+import AgeVerification from "../components/auth/AgeVerification"
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true)
@@ -10,8 +11,26 @@ const AuthPage = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+  const [showAgeVerification, setShowAgeVerification] = useState(false)
   
   const { signIn, signUp } = useAuth()
+
+  useEffect(() => {
+    // Yaş doğrulama kontrol et
+    const ageVerified = localStorage.getItem('emotice_age_verified')
+    if (!ageVerified) {
+      setShowAgeVerification(true)
+    }
+  }, [])
+
+  const handleAgeVerificationComplete = (data) => {
+    localStorage.setItem('emotice_age_verified', 'true')
+    setShowAgeVerification(false)
+  }
+
+  const handleAgeVerificationBack = () => {
+    setShowAgeVerification(false)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -20,17 +39,35 @@ const AuthPage = () => {
 
     try {
       if (isLogin) {
-        const { error } = await signIn(email, password)
-        if (error) throw error
+        const result = await signIn(email, password)
+        if (result.error) throw result.error
       } else {
-        const { error } = await signUp(email, password, { full_name: name })
-        if (error) throw error
+        // Kayıt olurken yaş doğrulama gerekli
+        const ageVerified = localStorage.getItem('emotice_age_verified')
+        if (!ageVerified) {
+          setShowAgeVerification(true)
+          setLoading(false)
+          return
+        }
+        
+        const result = await signUp(email, password, { full_name: name })
+        if (result.error) throw result.error
       }
     } catch (error) {
-      setError(error.message)
+      setError(error.message || "Bir hata oluştu")
     } finally {
       setLoading(false)
     }
+  }
+
+  // Yaş doğrulama kontrolü
+  if (showAgeVerification) {
+    return (
+      <AgeVerification 
+        onVerificationComplete={handleAgeVerificationComplete}
+        onBack={handleAgeVerificationBack}
+      />
+    )
   }
 
   return (
@@ -47,14 +84,16 @@ const AuthPage = () => {
         <div className="mb-6">
           <div className="flex bg-gray-100 rounded-lg p-1">
             <button
+              type="button"
               onClick={() => setIsLogin(true)}
-              className="flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors bg-white text-purple-600 shadow-sm"
+              className={`flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors ${isLogin ? "bg-white text-purple-600 shadow-sm" : "text-gray-600"}`}
             >
               Giriş Yap
             </button>
             <button
+              type="button"
               onClick={() => setIsLogin(false)}
-              className="flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors text-gray-600"
+              className={`flex-1 py-2 px-4 text-sm font-medium rounded-md transition-colors ${!isLogin ? "bg-white text-purple-600 shadow-sm" : "text-gray-600"}`}
             >
               Kayıt Ol
             </button>
@@ -62,34 +101,42 @@ const AuthPage = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+          {!isLogin && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Ad Soyad</label>
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="email@example.com"
-                required
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                placeholder="Adınızı girin"
+                required={!isLogin}
               />
             </div>
+          )}
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+              placeholder="email@example.com"
+              required
+            />
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Şifre</label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                placeholder="Şifrenizi girin"
-                required
-              />
-            </div>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+              placeholder="Şifrenizi girin"
+              required
+            />
           </div>
 
           {error && (
@@ -103,7 +150,7 @@ const AuthPage = () => {
             disabled={loading}
             className="w-full bg-purple-600 hover:bg-purple-700 disabled:opacity-50 text-white font-semibold py-3 px-4 rounded-lg transition-colors"
           >
-            {loading ? "Yükleniyor..." : "Giriş Yap"}
+            {loading ? "Yükleniyor..." : isLogin ? "Giriş Yap" : "Kayıt Ol"}
           </button>
         </form>
 
@@ -113,6 +160,7 @@ const AuthPage = () => {
             type="button"
             onClick={() => {
               localStorage.setItem('emotice_demo_user', 'true');
+              localStorage.setItem('emotice_age_verified', 'true');
               window.location.reload();
             }}
             className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
