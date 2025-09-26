@@ -9,6 +9,8 @@ import Dashboard from './components/dashboard/Dashboard'
 import MoodHistory from './components/mood/MoodHistorySimple'
 import Profile from './components/profile/Profile'
 import PremiumPage from './pages/PremiumPage'
+import NotFound from './pages/ErrorPages/NotFound'
+import ServerError from './pages/ErrorPages/ServerError'
 
 function App() {
   const [connected, setConnected] = useState(false)
@@ -89,6 +91,9 @@ function App() {
             <Route path="/history" element={<MoodHistory />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/premium" element={<PremiumPage />} />
+            <Route path="/404" element={<NotFound />} />
+            <Route path="/500" element={<ServerError />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </div>
